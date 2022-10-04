@@ -1,7 +1,7 @@
 <?php  
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CommonModel extends CI_Model{
+class commonModel extends CI_Model{
     function __construct()
     {
         parent:: __construct();

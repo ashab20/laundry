@@ -60,17 +60,39 @@
 
                 <?= form_open() ?>
                   <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Name" />
+                    <input class="form-control" type="text" placeholder="Name" name="name  value="<?= set_value('name') ?>" />
+                    <small id="name" class="form-text text-danger"><?= form_error('name'); ?></small>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" type="email" placeholder="Email address" />
+                    <input class="form-control" type="email" placeholder="Email address"  name="email" value="<?=set_value('email') ?>"/>
+                    <small id="name" class="form-text text-danger"><?= form_error('email'); ?></small>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-6">
-                      <input class="form-control" type="password" placeholder="Password" />
+                      <input class="form-control" type="password" placeholder="Password" name="password" value="<?= set_value('password') ?>" />
+                      <small id="name" class="form-text text-danger"><?= form_error('password'); ?></small>
                     </div>
                     <div class="form-group col-6">
-                      <input class="form-control" type="password" placeholder="Confirm Password" />
+                      <input class="form-control" type="password" placeholder="Confirm Password"  name="cpassword" value="<?= set_value('cpassword') ?>"/>
+                      <small id="name" class="form-text text-danger"><?= form_error('cpassword'); ?></small>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-6">
+                      <input class="form-control" type="number" placeholder="Phone " name="contact" />
+                    </div>
+                    <div class="form-group col-6">
+                     <select name="role" id="role" class="form-control">
+                      <option value="">Select Role</option>
+                      <option value="ADMIN">Admin</option>
+                      <option value="EMPLOYEE">Employee</option>
+
+                     </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <textarea name="address" id="address" class="form-control" rows="2" placeholder="Address:"></textarea>
                     </div>
                   </div>
                   <div class="custom-control custom-checkbox">
