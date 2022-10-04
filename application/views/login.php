@@ -36,7 +36,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <script src="<?= base_url('assets/js/config.navbar-vertical.js') ?> "></script>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
   <link href="<?= base_url('assets/lib/perfect-scrollbar/perfect-scrollbar.css') ?>" rel="stylesheet">
-  <link href=".<?= base_url('assets/css/theme.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/css/theme.css') ?>" rel="stylesheet">
 
 </head>
 
