@@ -1,7 +1,7 @@
 <?php  
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class commonModel extends CI_Model{
+class CommonModel extends CI_Model{
     function __construct()
     {
         parent:: __construct();
@@ -23,7 +23,7 @@ class commonModel extends CI_Model{
     }
   // ? *** Common Insert***
     function common_insert($table,$values){
-        $this->db->inser($table,$values);
+        $this->db->insert($table,$values);
         return $this->db->insert_id();
 
     }

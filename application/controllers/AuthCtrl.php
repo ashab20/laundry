@@ -7,29 +7,72 @@ class AuthCtrl extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('form');
-		$this->load->model('commonModel', 'cm');
+		$this->load->model('CommonModel', 'cm');
 		// $this->load->library('form_validation');
 	}
 
 
 	public function Login()
 	{
-		$this->load->view('login');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[20]');
+
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('login');
+		} else {
+			$usr['email'] = $this->input->post('email');
+			$usr['password'] = sha1(md5($this->input->post('password')));
+
+			// $this->db->where($usr);
+			// /* group all where condition */
+
+			// $this->db->group_start();
+			// $this->db->where('username',$usr)
+			// ->or_where('email_address',$usr)
+			// ->or_where('contact_no',$usr);
+			// $this->db->group_end();
+
+
+			$loggedIn = $this->db->where($usr)->get('users')->row();
+
+
+			if ($loggedIn) {
+				$this->session->set_userdata('ud', $loggedIn);
+				redirect('/dashboard/');
+			} else {
+				$this->session->set_flashdata('msg', '<b class="text-danger">Email or password is not correct</b>');
+				redirect('/');
+			}
+		}
 	}
+
+
+	// logout
+	public function logout()
+	{
+		session_destroy();
+		redirect('login');
+	}
+
+
 	// *** Registration
 	// 	 	name 	email 	password 	contact 	role 	adress 	created_at 	updated_at 	status 
 	public function registration()
 	{
 		$this->load->library('form_validation');
-		$this->load->view('register');
+		// $this->load->view('register');
 
 		// set form validation
-		$this->form_validation->set_value('name', 'Full name', 'required');
-		$this->form_validation->set_value('email', 'Email', 'required|valid_email');
-		$this->form_validation->set_value('password', 'Password', 'required|min_length[6]|max_length[20]');
-		$this->form_validation->set_value('cpassword', 'Confirm Password', 'required|match[password]');
-		$this->form_validation->set_value('contact', 'Phone', 'required');
-		$this->form_validation->set_value('address', 'Address', 'required');
+		$this->form_validation->set_rules('name', 'Full name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[20]');
+		$this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[password]');
+		$this->form_validation->set_rules('contact', 'Phone', 'required');
+		$this->form_validation->set_rules('address', 'Address');
+		$this->form_validation->set_rules('role', 'Role', 'required');
 
 		if ($this->form_validation->run() === false) {
 			$this->load->view('register');
@@ -39,10 +82,13 @@ class AuthCtrl extends CI_Controller
 			$usr['password'] = sha1(md5($this->input->post('password')));
 			$usr['contact'] = $this->input->post('contact');
 			$usr['address'] = $this->input->post('address');
+			$usr['role'] = $this->input->post('role');
+			$usr['created_at'] = date('Y-m-d H:i:s');
+			$usr['status'] = 1;
 
 			if ($this->cm->common_insert('users', $usr)) {
 				$this->session->set_flashdata('msg', '<b class="text-info">Registration successfull</b>');
-				redirect('login');
+				redirect('/');
 			} else {
 				$this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
 				$this->load->view('register');
