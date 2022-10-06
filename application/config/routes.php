@@ -53,6 +53,9 @@ $route['default_controller'] = 'AuthCtrl/login';
 $route['registration'] = 'AuthCtrl/registration';
 $route['dashboard'] = 'DashboardCtrl/index';
 
+// Customers Routes
+$route['customer/create'] = 'CustomerCtrl/add';
+
 
 
 $route['404_override'] = '';
