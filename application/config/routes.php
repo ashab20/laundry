@@ -57,8 +57,8 @@ $route['logout']['get'] = 'AuthCtrl/logout';
 $route['dashboard'] = 'DashboardCtrl/index';
 
 // Customers Routes
-$route['customer/create'] = 'CustomerCtrl/add';
-$route['customer/step'] = 'CustomerCtrl/step';
+$route['customer/create']['get'] = 'CustomerCtrl/step';
+$route['customer/create']['post'] = 'CustomerCtrl/add';
 
 
 
