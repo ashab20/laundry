@@ -16,23 +16,26 @@
                     echo $this->session->flashdata('msg');
                 } ?>
             </span>
-        </div> 
+        </div>
         <?= form_open() ?>
+        <?php
+        // ! Step @1 
+        ?>
         <div class="step active">
             <div class="card-body">
-               
+
                 <div class="form-row">
-                    <div class="form-group col-6">                        
-                    <label for="">Phone:</label>
+                    <div class="form-group col-6">
+                        <label for="">Phone:</label>
                         <input class="form-control" type="text" placeholder="Phone" name="contact" value="<?= set_value('contact') ?>" id="contact" />
                         <small id="name" class="form-text text-danger"><?= form_error('contact'); ?></small>
                     </div>
                     <div class="form-group col-6">
-                    <label for="">Name:</label>
+                        <label for="">Name:</label>
                         <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" />
                         <small id="name" class="form-text text-danger"><?= form_error('name'); ?></small>
                     </div>
-                    
+
                 </div>
                 <div class="form-row">
                     <div class="form-group col-12">
@@ -46,23 +49,76 @@
                 <div class="form-group button">
                     <button class="create-workspace btn btn-primary btn-block mt-3" type="button">Add</button>
                 </div>
-                
+
             </div>
 
         </div>
+        <?php
+        // ! Step @2 
+        ?>
         <div class="step">
 
             <div class="content">
                 <h4>Let's set up a home for all your work</h4>
                 <p>You can always create another workspace later.</p>
             </div>
-            <div class="input-text">
-                <input type="text" placeholder="Eden" require>
-                <span>Workspace Name</span>
-            </div>
-            <div class="input-text">
-                <input type="text" placeholder="Example : https://www.google.com/">
-                <span>Workspace URL(optional)</span>
+            <div class="form-group">
+                <div class="row bg-light p-2 rounded-top">
+                    <div class="col-2"></div>
+                    <div class="col-3">
+                        <label for="">Test</label>
+                    </div>
+                    <div class="col-2"><label for="">Description</label></div>
+                    <div class="col-2"><label for="">Price</label></div>
+                    <div class="col-3"><label for="">Total</label></div>
+
+                </div>
+                <!-- outer repeater -->
+                <div class="repeater">
+                    <div data-repeater-list="outer-list">
+                        <div data-repeater-item class="row mt-2">
+                            <div class="col-1 mx-2">
+                                <button class="btn bg-danger text-white btn-sm mt-1" data-repeater-delete type="button">
+                                    <i class="mdi mdi-minus-circle"></i>
+                                </button>
+                            </div>
+                            <div class="col-3 mr-2">
+                                <!-- <div class="p-0"> -->
+                                <!-- <select name="tid" class="form-select" onchange="product_add(this)">
+                                    <option value="">Select Item</option>
+                                    <?php
+
+                                    foreach ($testData as $test) {
+                                    ?>
+                                        <option data-testid="<?= $test['id'] ?>" data-price="<?= $test['rate'] ?>" value="<?= $test['id'] ?>" data-description="<?= $test['description'] ?>">
+                                            <?= $test['test_name'] ?>
+                                        </option>
+                                    <?php }
+                                    ?>
+                                </select> -->
+                                <!-- </div> -->
+                            </div>
+                            <div class="col-2 p-0 mx-2">
+                                <input type="text" class="form-control descirbe" name="describtion" onkeyup="get_count(this)">
+                            </div>
+                            <div class="col-2 p-0 mx-2">
+                                <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="price">
+                            </div>
+                            <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
+
+                            <div class="col-2 p-0 mx-2">
+                                <input readonly type="text" class="form-control sub bg-white" name="sub">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn bg-primary m-2 text-white btn-sm" data-repeater-create type="button">
+                            <i class="mdi mdi-plus-circle"></i>
+                        </button>
+                    </div>
+
+                </div>
             </div>
             <div class="button button_gap">
                 <button type="button" class="back-click">Back</button>
@@ -70,6 +126,9 @@
             </div>
 
         </div>
+        <?php
+        // ! Step @3 
+        ?>
         <div class="step">
 
             <div class="content">
@@ -100,6 +159,9 @@
             </div>
 
         </div>
+        <?php
+        // ! Step Final 
+        ?>
         <div class="step">
 
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -119,3 +181,115 @@
     </div>
 
 </div>
+
+<!-- reapeater -->
+
+<script src="<?= base_url('assets/js/jquery.repeater.min.js') ?>"></script>
+<script>
+    function total_amount_calc() {
+        var sub_amount = parseFloat($('#sub_amount').val());
+        var discount = parseFloat($('#discount').val());
+        var tax = parseFloat($('#tax').val());
+        if (!sub_amount) sub_amount = 0;
+        if (!discount) discount = 0;
+
+        if (tax > 0) {
+            tax = (sub_amount * (tax / 100));
+        } else {
+            tax = 0
+        }
+        var total = ((sub_amount + tax) - discount);
+        $('#total_amount').val(total);
+    }
+</script>
+<script>
+    let total_rate = $("#total_rate").val();
+    $('#sub_amount').val(total_rate);
+    $('#total_amount').val(total_rate);
+
+    let getId = [];
+
+    function product_add(e) {
+        var price = $(e).children('option:selected').data('price');
+        // var discount=$(e).children('option:selected').data('discount');
+        var description = $(e).children('option:selected').data('description');
+        var testId = $(e).children('option:selected').data('testid');
+        $(e).closest('.row').find('.price').val(price);
+        // $(e).closest('.row').find('.test_id').val({...testId});
+        $(e).closest('.row').find('.descirbe').val(description);
+
+
+        // function get_count(e){
+        //   // var qty=parseFloat($(e).val());
+        //   var price=parseFloat($(e).closest('.row').find('.price').val());
+        //   var sub=price; // qty*price
+        //   $(e).closest('.row').find('.sub').val(sub);
+        //   sub_amount();
+        //   total_amount_calc();
+        // }
+
+        getId.push(testId);
+
+        // ? change by me
+        var price = parseFloat($(e).closest('.row').find('.price').val());
+        var sub = price; // qty*price
+        $(e).closest('.row').find('.sub').val(sub);
+        sub_amount();
+        total_amount_calc();
+
+
+
+
+        function get_pricecount(e) {
+            var price = parseFloat($(e).val());
+            // var qty=parseFloat($(e).closest('.row').find('.qty').val());
+
+            var sub = price; // qty*price
+            $(e).closest('.row').find('.sub').val(sub);
+            sub_amount();
+            total_amount_calc();
+        }
+
+        function sub_amount() {
+            var sub_amount = 0;
+            $('.sub').each(function() {
+                sub_amount += parseFloat($(this).val());
+            });
+            $('#sub_amount').val(sub_amount);
+            $('#total_amount').val(sub_amount);
+            total_amount_calc();
+        }
+
+    }
+
+    $('#payment').keyup(() => {
+        let payment = $('#payment').val();
+        let total_amount = $('#total_amount').val();
+        if (total_amount <= payment) {
+            $('#remark').val('PAID');
+        } else if (total_amount > payment) {
+            $('#remark').val('DUE');
+        }
+        $('#dueAmount').val(parseFloat(total_amount - payment))
+    });
+
+    // $('.test_id').val({...getId});
+
+    // console.log(getId);
+</script>
+<script>
+    $(document).ready(function() {
+        $('.repeater').repeater({
+            // (Required if there is a nested repeater)
+            // Specify the configuration of the nested repeaters.
+            // Nested configuration follows the same format as the base configuration,
+            // supporting options "defaultValues", "show", "hide", etc.
+            // Nested repeaters additionally require a "selector" field.
+            repeaters: [{
+                // (Required)
+                // Specify the jQuery selector for this nested repeater
+                selector: '.inner-repeater'
+            }]
+        });
+    });
+</script>

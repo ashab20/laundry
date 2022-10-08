@@ -44,6 +44,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <!-- <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet"> -->
     <!-- step css -->
     <link href="<?= base_url('assets/css/step.css') ?>" rel="stylesheet">
+    <!-- jquery -->
+    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
 
 </head>
 
