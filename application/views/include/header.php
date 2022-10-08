@@ -40,6 +40,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link href="<?= base_url('assets/lib/leaflet.markercluster/MarkerCluster.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/lib/leaflet.markercluster/MarkerCluster.Default.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/theme.css') ?>" rel="stylesheet">
+    <!-- css main -->
+    <!-- <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet"> -->
+    <!-- step css -->
+    <link href="<?= base_url('assets/css/step.css') ?>" rel="stylesheet">
 
 </head>
 

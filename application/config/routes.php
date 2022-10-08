@@ -51,10 +51,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'AuthCtrl/login';
 $route['registration'] = 'AuthCtrl/registration';
+$route['logout']['get'] = 'AuthCtrl/logout';
+
+
 $route['dashboard'] = 'DashboardCtrl/index';
 
 // Customers Routes
 $route['customer/create'] = 'CustomerCtrl/add';
+$route['customer/step'] = 'CustomerCtrl/step';
 
 
 

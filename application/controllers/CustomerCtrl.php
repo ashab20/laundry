@@ -52,4 +52,9 @@ class CustomerCtrl extends CI_Controller
             }
         }
     }
+
+    public function step(){
+        $data['page'] = "customers/step";
+            $this->load->view('app', $data);
+    }
 }

@@ -8,7 +8,7 @@
                             <h5> Add Customer</h5>
                         </div>
                         <div class="col-auto">
-                            
+
                         </div>
                     </div>
                     <span>
@@ -37,6 +37,9 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block mt-3" type="submit">Create</button>
+                    </div>
+                    <div class="button">
+                        <button class="create-workspace">Create Workspace</button>
                     </div>
                     </form>
                 </div>

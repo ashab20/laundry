@@ -25,6 +25,9 @@
 <script src="<?= base_url('assets/lib/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/theme.js') ?>"></script>
 
+<!-- step javascript -->
+<script src="<?= base_url('assets/js/main.js') ?>"></script>
+
 </body>
 
 </html>

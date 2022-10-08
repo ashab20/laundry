@@ -217,7 +217,7 @@
 
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="pages/settings.html">Settings</a>
-            <a class="dropdown-item" href="authentication/basic/logout.html">Logout</a>
+            <a class="dropdown-item" href="<?= base_url('logout') ?>">Logout</a>
           </div>
         </div>
       </li>

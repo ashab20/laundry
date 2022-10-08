@@ -23,14 +23,30 @@
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Home</span>
                 </div>
               </a>
-              <ul class="nav collapse show" id="home" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item active"><a class="nav-link" href="index.html">Dashboard</a>
+              <ul class="nav collapse" id="home" data-parent="#navbarVerticalCollapse">
+                <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="home/dashboard-alt.html">Dashboard alt</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="home/feed.html">Feed</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="home/landing.html">Landing</a>
+                </li>
+              </ul>
+            </li>
+            <!-- ! customers  -->
+            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#customers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="customers">
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Customers</span>
+                </div>
+              </a>
+              <ul class="nav collapse show" id="customers" data-parent="#navbarVerticalCollapse">
+                <li class="nav-item active"><a class="nav-link" href="index.html">Add</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="customers/dashboard-alt.html">Dashboard alt</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="customers/feed.html">Feed</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="customers/landing.html">Landing</a>
                 </li>
               </ul>
             </li>
