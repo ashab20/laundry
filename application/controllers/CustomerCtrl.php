@@ -18,32 +18,51 @@ class CustomerCtrl extends CI_Controller
 
     public function add()
     {
-        $this->load->library('form_validation');
+        // $this->load->library('form_validation');
         // $this->load->view('register');
 
         // set form validation
-        $this->form_validation->set_rules('name', 'Full name', 'required');
-        $this->form_validation->set_rules('contact', 'Phone', 'required');
-        $this->form_validation->set_rules('address', 'Address');
+        // $this->form_validation->set_rules('name', 'Full name', 'required');
+        // $this->form_validation->set_rules('contact', 'Phone', 'required');
+        // $this->form_validation->set_rules('address', 'Address');
 
-        if ($this->form_validation->run() === false) {
-            $data['service'] = $this->cm->common_select('service');
-            $data['page'] = "customers/add";
-            $this->load->view('app', $data);
+        // if ($this->form_validation->run() === false) {
+        //     $data['service'] = $this->cm->common_select('service');
+        //     $data['page'] = "customers/add";
+        //     $this->load->view('app', $data);
+        // } else {
+        //     $custmoter['name'] = $this->input->post('name');
+        //     $custmoter['contact'] = $this->input->post('contact');
+        //     $custmoter['address'] = $this->input->post('address');
+        //     $custmoter['created_at'] = date('Y-m-d H:i:s');
+        //     $custmoter['status'] = 1;
+
+        //     if ($this->cm->common_insert('customers', $custmoter)) {
+        //         $this->session->set_flashdata('msg', '<b class="text-info">Registration successfull</b>');
+        //         redirect('/');
+        //     } else {
+        //         $this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
+        //         $this->load->view('customer/create');
+        //     }
+        // }
+
+        $custmoter['name'] = $this->input->get('name');
+        $custmoter['contact'] = $this->input->get('contact');
+        $custmoter['address'] = $this->input->get('address');
+        echo "<script>console.log('worked)</script>";
+        $custmoter['created_at'] = date('Y-m-d H:i:s');
+        $custmoter['status'] = 1;
+
+        return json_encode( $custmoter);
+
+        if ($this->cm->common_insert('customers', $custmoter)) {
+            $this->session->set_flashdata('msg', '<b class="text-info">Registration successfull</b>');
+            echo "<script>console.log('worked)</script>";
+            redirect('/');
         } else {
-            $custmoter['name'] = $this->input->post('name');
-            $custmoter['contact'] = $this->input->post('contact');
-            $custmoter['address'] = $this->input->post('address');
-            $custmoter['created_at'] = date('Y-m-d H:i:s');
-            $custmoter['status'] = 1;
-
-            if ($this->cm->common_insert('customers', $custmoter)) {
-                $this->session->set_flashdata('msg', '<b class="text-info">Registration successfull</b>');
-                redirect('/');
-            } else {
-                $this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
-                $this->load->view('customer/create');
-            }
+            echo "<script>console.log('not worked)</script>";
+            $this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
+            $this->load->view('customer/create');
         }
     }
 

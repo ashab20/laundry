@@ -1,4 +1,3 @@
-var create_workspace=document.querySelector(".create-workspace");
 var next_click=document.querySelectorAll(".next-click");
 var back_click=document.querySelectorAll(".back-click");
 var finish_click=document.querySelector(".finish-click");
@@ -6,40 +5,6 @@ var step_form=document.querySelectorAll(".step");
 var list=document.querySelectorAll(".progress-bar li")
 let formnumber=0;
 
-
-create_workspace.addEventListener('click',function(e){
-    e.preventDefault();
-    // if(!validateform()){
-    //     return false;
-    // }
-
-    let contact = $('.contact');
-    let name = $('.name');
-    let address = $('.addess');
-
-    let data = {
-        name,contact,address
-    }
-
-
-    $.ajax({
-        url: '../form/data.php?department',
-        type: 'post',
-        dataType: 'json',
-        data,
-        contentType: 'application/json',
-        success: function (res) {
-            console.log(res);
-        },error: function(xhr, status, errorMessage) {
-            console.log(errorMessage);
-        }
-    });
-
-
-   formnumber++;
-   updateform();
-   progress_forward();
-});
 
 
 

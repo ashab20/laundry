@@ -26,32 +26,32 @@
                 <?php
 
                 ?>
-                <?= form_open() ?>
-                <div class="form-row">
-                    <div class="form-group col-6">
-                        <label for="">Phone:</label>
-                        <input class="form-control" type="text" placeholder="Phone" name="contact" value="<?= set_value('contact') ?>" id="contact" />
-                        <small id="name" class="form-text text-danger"><?= form_error('contact'); ?></small>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="">Name:</label>
-                        <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" id="name" />
-                        <small  class="form-text text-danger"><?= form_error('name'); ?></small>
-                    </div>
+                <form action="" method="get">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="">Phone:</label>
+                            <input class="form-control" type="text" placeholder="Phone" name="contact" value="<?= set_value('contact') ?>" id="contact" />
+                            <small class="form-text text-danger"><?= form_error('contact'); ?></small>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="">Name:</label>
+                            <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" id="name" />
+                            <small class="form-text text-danger"><?= form_error('name'); ?></small>
+                        </div>
 
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-12">
+                    </div>
+                    <div class="form-row">
                         <label for="">Address:</label>
-                        <textarea name="address" id="address" class="form-control" rows="2" placeholder="Address:" valus="  <?= set_value('address') ?>">
+                        <div class="form-group col-12">
+                            <textarea name="address" id="address" class="form-control" rows="2" valus="  <?= set_value('address') ?>">
 
                   </textarea>
-                        <small id="address" class="form-text text-danger"><?= form_error('address'); ?></small>
+                            <small id="address" class="form-text text-danger"><?= form_error('address'); ?></small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group button">
-                    <button class="create-workspace btn btn-primary btn-block mt-3" type="submit">Add</button>
-                </div>
+                    <div class="form-group button">
+                        <button class="create-workspace btn btn-primary btn-block mt-3" type="button">Add</button>
+                    </div>
                 </form>
 
             </div>
@@ -224,3 +224,42 @@
 
 <script src="<?= base_url('assets/js/jquery.repeater.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/invoice.js') ?>"></script>
+<script>
+    var create_workspace = document.querySelector(".create-workspace");
+
+    create_workspace.addEventListener('click', function(e) {
+        e.preventDefault();
+        // if(!validateform()){
+        //     return false;
+        // }
+
+        let contact = $('#contact').val();
+        let name = $('#name').val();
+        let address = $('#address').val();
+
+        let data = {
+            name,
+            contact,
+            address
+        }
+
+//    next time check data by phone
+// if customers not exist then create new customer for loundry
+        $.ajax({
+            url: "<?= base_url('customer/create') ?>",
+            type: 'get',
+            dataType: 'json',
+            data,
+            contentType: 'application/json',
+            success: function(res) {
+                console.log(res);
+            },
+            error: function(xhr, status, errorMessage) {}
+        });
+        formnumber++;
+        updateform();
+        progress_forward();
+
+
+    });
+</script>
