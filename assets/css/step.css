@@ -8,7 +8,7 @@
 }
 
 .step_wrapper .card{
-    height:420px;  
+    min-height:420px;  
     background-color:#fff;
     border-radius:10px;
     padding:10px 20px;

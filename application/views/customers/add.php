@@ -17,13 +17,16 @@
                 } ?>
             </span>
         </div>
-        <?= form_open() ?>
+
         <?php
         // ! Step @1 
         ?>
         <div class="step active">
             <div class="card-body">
+                <?php
 
+                ?>
+                <?= form_open() ?>
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label for="">Phone:</label>
@@ -32,8 +35,8 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="">Name:</label>
-                        <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" />
-                        <small id="name" class="form-text text-danger"><?= form_error('name'); ?></small>
+                        <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" id="name" />
+                        <small  class="form-text text-danger"><?= form_error('name'); ?></small>
                     </div>
 
                 </div>
@@ -43,12 +46,13 @@
                         <textarea name="address" id="address" class="form-control" rows="2" placeholder="Address:" valus="  <?= set_value('address') ?>">
 
                   </textarea>
-                        <small id="name" class="form-text text-danger"><?= form_error('address'); ?></small>
+                        <small id="address" class="form-text text-danger"><?= form_error('address'); ?></small>
                     </div>
                 </div>
                 <div class="form-group button">
-                    <button class="create-workspace btn btn-primary btn-block mt-3" type="button">Add</button>
+                    <button class="create-workspace btn btn-primary btn-block mt-3" type="submit">Add</button>
                 </div>
+                </form>
 
             </div>
 
@@ -56,12 +60,13 @@
         <?php
         // ! Step @2 
         ?>
+        <?= form_open() ?>
         <div class="step">
-
+            <!-- 
             <div class="content">
                 <h4>Let's set up a home for all your work</h4>
                 <p>You can always create another workspace later.</p>
-            </div>
+            </div> -->
             <div class="form-group">
                 <div class="row bg-light p-2 rounded-top">
                     <div class="col-2"></div>
@@ -69,8 +74,9 @@
                         <label for="">Test</label>
                     </div>
                     <div class="col-2"><label for="">Description</label></div>
-                    <div class="col-2"><label for="">Price</label></div>
-                    <div class="col-3"><label for="">Total</label></div>
+                    <div class="col-1"><label for="">Quantity</label></div>
+                    <div class="col-1"><label for="">Price</label></div>
+                    <div class="col-2"><label for="">Total</label></div>
 
                 </div>
                 <!-- outer repeater -->
@@ -83,25 +89,28 @@
                                 </button>
                             </div>
                             <div class="col-3 mr-2">
-                                <div class="p-0"> 
-                                 <select name="tid" class="form-select" onchange="product_add(this)">
-                                    <option value="">Select Item</option>
-                                    <?php
+                                <div class="p-0 form-group">
+                                    <select class="form-control" name="tid" onchange="product_add(this)">
+                                        <option value="">Select Item</option>
+                                        <?php
 
-                                    foreach ($service as $s) {
-                                    ?>
-                                        <option data-testid="<?= $s['id'] ?>" data-price="<?=$s['price'] ?>" value="<?= $s['id'] ?>" >
-                                            <?= $s['name'] ?>
-                                        </option>
-                                    <?php }
-                                    ?>
-                                </select> 
-                               </div>
+                                        foreach ($service as $s) {
+                                        ?>
+                                            <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
+                                                <?= ucfirst($s->name) ?>
+                                            </option>
+                                        <?php }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-2 p-0 mx-2">
-                                <input type="text" class="form-control descirbe" name="describtion" onkeyup="get_count(this)">
+                                <input type="text" class="form-control descirbe" name="details">
                             </div>
-                            <div class="col-2 p-0 mx-2">
+                            <div class="col-1 p-0 mx-2">
+                                <input type="text" class="form-control qty" name="qty" onkeyup="get_count(this)">
+                            </div>
+                            <div class="col-1 p-0 mx-2">
                                 <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="price">
                             </div>
                             <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
@@ -113,7 +122,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <button class="btn bg-primary m-2 text-white btn-sm" data-repeater-create type="button">+
+                        <button class="btn bg-primary  text-white btn-sm" data-repeater-create type="button">+
                             <i class="mdi mdi-plus-circle"></i>
                         </button>
                     </div>
@@ -132,27 +141,54 @@
         <div class="step">
 
             <div class="content">
-                <h4>How are you planning to use Eden?</h4>
-                <p>We'll stream line your setup accordingly.</p>
+                <h4>Payment</h4>
             </div>
-            <div class="radio-text">
-                <input type="radio" name="Select" id="radio-button-1">
+            <!-- final counter -->
+            <div class="form-group">
 
-                <input type="radio" name="Select" id="radio-button-2">
-                <label for="radio-button-1" class="radio-button-1">
-                    <i class="fa fa-user"></i>
-                    <h5>For Myself</h5>
-                    <p>Write better.Think more clearly.Stay organized.</p>
+                <div class="row">
+                    <div class="col-6">
+                        <div>
+                            <label for="note" class="form-label text-success">Note:</label>
+                            <textarea class="form-control" id="note" placeholder="Enter Note" rows="12" name="note"></textarea>
+                        </div>
+                        <div class="d-flex">
+                            <div class="  mt-2 col-3">
+                                <label for="sub_amount" class="form-label text-success">Remark:</label>
+                                <input type="text" class="form-control" id="remark" placeholder="Paid or Due" name="remark">
+                            </div>
+                            <div class="col-4 mt-4">
+                                <input type="text" class="form-control mt-2 bg-white" id="dueAmount" readonly>
+                            </div>
+                        </div>
 
-                </label>
-                <label for="radio-button-2" class="radio-button-2">
-                    <i class="fa fa-users"></i>
-                    <h5>With my team</h5>
-                    <p>Wikis,docs,tasks and projects all in one space.</p>
-                </label>
-
-
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <label for="sub_amount" class="form-label text-success">Sub Amount:</label>
+                            <input type="number" class="form-control" id="sub_amount" placeholder="Enter Sub Amount" name="subtotal">
+                        </div>
+                        <div>
+                            <label for="discount" class="form-label text-success">Discount:</label>
+                            <input type="number" class="form-control" id="discount" placeholder="Enter Discount" name="discount" onkeyup="total_amount_calc()" value="0">
+                        </div>
+                        <div>
+                            <label for="tax" class="form-label text-success">Tax (%):</label>
+                            <input type="number" class="form-control" id="tax" placeholder="Enter Tax" name="tax" onkeyup="total_amount_calc()" value="0">
+                        </div>
+                        <div>
+                            <label for="total_amount" class="form-label text-success">Total Amount:</label>
+                            <input type="number" value="0" class="form-control" id="total_amount" placeholder="Enter Total Amount" name="total">
+                        </div>
+                        <div>
+                            <label for="payment" class="form-label text-success">Pay Amount:</label>
+                            <input type="number" value="0" class="form-control" id="payment" placeholder="Enter Pay Amount" name="payment">
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
             <div class="button button_gap1">
                 <button type="button" class="back-click">Back</button>
                 <button type="button" class="finish-click">Finish</button>
@@ -182,114 +218,9 @@
 
 </div>
 
+
+
 <!-- reapeater -->
 
 <script src="<?= base_url('assets/js/jquery.repeater.min.js') ?>"></script>
-<script>
-    function total_amount_calc() {
-        var sub_amount = parseFloat($('#sub_amount').val());
-        var discount = parseFloat($('#discount').val());
-        var tax = parseFloat($('#tax').val());
-        if (!sub_amount) sub_amount = 0;
-        if (!discount) discount = 0;
-
-        if (tax > 0) {
-            tax = (sub_amount * (tax / 100));
-        } else {
-            tax = 0
-        }
-        var total = ((sub_amount + tax) - discount);
-        $('#total_amount').val(total);
-    }
-</script>
-<script>
-    let total_rate = $("#total_rate").val();
-    $('#sub_amount').val(total_rate);
-    $('#total_amount').val(total_rate);
-
-    let getId = [];
-
-    function product_add(e) {
-        var price = $(e).children('option:selected').data('price');
-        // var discount=$(e).children('option:selected').data('discount');
-        var description = $(e).children('option:selected').data('description');
-        var testId = $(e).children('option:selected').data('testid');
-        $(e).closest('.row').find('.price').val(price);
-        // $(e).closest('.row').find('.test_id').val({...testId});
-        $(e).closest('.row').find('.descirbe').val(description);
-
-
-        // function get_count(e){
-        //   // var qty=parseFloat($(e).val());
-        //   var price=parseFloat($(e).closest('.row').find('.price').val());
-        //   var sub=price; // qty*price
-        //   $(e).closest('.row').find('.sub').val(sub);
-        //   sub_amount();
-        //   total_amount_calc();
-        // }
-
-        getId.push(testId);
-
-        // ? change by me
-        var price = parseFloat($(e).closest('.row').find('.price').val());
-        var sub = price; // qty*price
-        $(e).closest('.row').find('.sub').val(sub);
-        sub_amount();
-        total_amount_calc();
-
-
-
-
-        function get_pricecount(e) {
-            var price = parseFloat($(e).val());
-            // var qty=parseFloat($(e).closest('.row').find('.qty').val());
-
-            var sub = price; // qty*price
-            $(e).closest('.row').find('.sub').val(sub);
-            sub_amount();
-            total_amount_calc();
-        }
-
-        function sub_amount() {
-            var sub_amount = 0;
-            $('.sub').each(function() {
-                sub_amount += parseFloat($(this).val());
-            });
-            $('#sub_amount').val(sub_amount);
-            $('#total_amount').val(sub_amount);
-            total_amount_calc();
-        }
-
-    }
-
-    $('#payment').keyup(() => {
-        let payment = $('#payment').val();
-        let total_amount = $('#total_amount').val();
-        if (total_amount <= payment) {
-            $('#remark').val('PAID');
-        } else if (total_amount > payment) {
-            $('#remark').val('DUE');
-        }
-        $('#dueAmount').val(parseFloat(total_amount - payment))
-    });
-
-    // $('.test_id').val({...getId});
-
-    // console.log(getId);
-</script>
-<script>
-    $(document).ready(function() {
-        $('.repeater').repeater({
-            // (Required if there is a nested repeater)
-            // Specify the configuration of the nested repeaters.
-            // Nested configuration follows the same format as the base configuration,
-            // supporting options "defaultValues", "show", "hide", etc.
-            // Nested repeaters additionally require a "selector" field.
-            repeaters: [{
-                // (Required)
-                // Specify the jQuery selector for this nested repeater
-                selector: '.inner-repeater'
-            }]
-        });
-    });
-</script>
+<script src="<?= base_url('assets/js/invoice.js') ?>"></script>

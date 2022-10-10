@@ -78,25 +78,25 @@
                     <div data-repeater-list="outer-list">
                         <div data-repeater-item class="row mt-2">
                             <div class="col-1 mx-2">
-                                <button class="btn bg-danger text-white btn-sm mt-1" data-repeater-delete type="button">
+                                <button class="btn bg-danger text-white btn-sm mt-1" data-repeater-delete type="button">-
                                     <i class="mdi mdi-minus-circle"></i>
                                 </button>
                             </div>
                             <div class="col-3 mr-2">
-                                <!-- <div class="p-0"> -->
-                                <!-- <select name="tid" class="form-select" onchange="product_add(this)">
-                                    <option value="">Select Item</option>
-                                    <?php
+                            <div class="p-0 form-group">
+                                    <select class="form-control" name="tid" onchange="product_add(this)">
+                                        <option value="">Select Item</option>
+                                        <?php
 
-                                    foreach ($testData as $test) {
-                                    ?>
-                                        <option data-testid="<?= $test['id'] ?>" data-price="<?= $test['rate'] ?>" value="<?= $test['id'] ?>" data-description="<?= $test['description'] ?>">
-                                            <?= $test['test_name'] ?>
-                                        </option>
-                                    <?php }
-                                    ?>
-                                </select> -->
-                                <!-- </div> -->
+                                        foreach ($service as $s) {
+                                        ?>
+                                            <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
+                                                <?= ucfirst($s->name) ?>
+                                            </option>
+                                        <?php }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-2 p-0 mx-2">
                                 <input type="text" class="form-control descirbe" name="describtion" onkeyup="get_count(this)">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <button class="btn bg-primary m-2 text-white btn-sm" data-repeater-create type="button">
+                        <button class="btn bg-primary m-2 text-white btn-sm" data-repeater-create type="button">+
                             <i class="mdi mdi-plus-circle"></i>
                         </button>
                     </div>

@@ -7,14 +7,42 @@ var list=document.querySelectorAll(".progress-bar li")
 let formnumber=0;
 
 
-create_workspace.addEventListener('click',function(){
-    if(!validateform()){
-        return false;
+create_workspace.addEventListener('click',function(e){
+    e.preventDefault();
+    // if(!validateform()){
+    //     return false;
+    // }
+
+    let contact = $('.contact');
+    let name = $('.name');
+    let address = $('.addess');
+
+    let data = {
+        name,contact,address
     }
+
+
+    $.ajax({
+        url: '../form/data.php?department',
+        type: 'post',
+        dataType: 'json',
+        data,
+        contentType: 'application/json',
+        success: function (res) {
+            console.log(res);
+        },error: function(xhr, status, errorMessage) {
+            console.log(errorMessage);
+        }
+    });
+
+
    formnumber++;
    updateform();
    progress_forward();
 });
+
+
+
 
 next_click.forEach(function(next_page){
     next_page.addEventListener('click',function(){

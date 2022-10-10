@@ -15,7 +15,7 @@ class CustomerCtrl extends CI_Controller
 
 
     // *** Addd customers
-    
+
     public function add()
     {
         $this->load->library('form_validation');
@@ -32,7 +32,7 @@ class CustomerCtrl extends CI_Controller
             $this->load->view('app', $data);
         } else {
             $custmoter['name'] = $this->input->post('name');
-            $custmoter['contact'] = $this->input->post('contact');           
+            $custmoter['contact'] = $this->input->post('contact');
             $custmoter['address'] = $this->input->post('address');
             $custmoter['created_at'] = date('Y-m-d H:i:s');
             $custmoter['status'] = 1;
@@ -47,9 +47,10 @@ class CustomerCtrl extends CI_Controller
         }
     }
 
-    
 
-    public function step(){
+
+    public function step()
+    {
         $data['service'] = $this->cm->common_select('service');
         $data['page'] = "customers/add";
         $this->load->view('app', $data);
