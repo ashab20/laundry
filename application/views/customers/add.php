@@ -23,44 +23,43 @@
         ?>
         <div class="step active">
             <div class="card-body">
-                <?php
-
-                ?>
-                <form action="" method="get">
+                <form method="POST">
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="">Phone:</label>
-                            <input class="form-control" type="text" placeholder="Phone" name="contact" value="<?= set_value('contact') ?>" id="contact" />
-                            <small class="form-text text-danger"><?= form_error('contact'); ?></small>
+                            <input class="form-control" type="text" placeholder="Phone" name="contact" id="contact" />
+                            <small class="form-text text-danger" id="text"><?= form_error('contact'); ?></small>
+                            <!-- value="<?= set_value('contact') ?>" -->
                         </div>
                         <div class="form-group col-6">
                             <label for="">Name:</label>
-                            <input class="form-control" type="text" placeholder="Name" name="name" value="<?= set_value('name') ?>" id="name" />
+                            <input class="form-control" type="text" placeholder="Name" name="name" id="name" />
                             <small class="form-text text-danger"><?= form_error('name'); ?></small>
+                            <!-- value="<?= set_value('name') ?>" -->
                         </div>
 
                     </div>
                     <div class="form-row">
                         <label for="">Address:</label>
                         <div class="form-group col-12">
-                            <textarea name="address" id="address" class="form-control" rows="2" valus="  <?= set_value('address') ?>">
+                            <textarea name="address" id="address" class="form-control" rows="2">
 
                   </textarea>
                             <small id="address" class="form-text text-danger"><?= form_error('address'); ?></small>
                         </div>
+                        <!-- valus="<?= set_value('address') ?>" -->
                     </div>
                     <div class="form-group button">
-                        <button class="create-workspace btn btn-primary btn-block mt-3" type="button">Add</button>
+                        <button class="create-workspace btn btn-primary btn-block mt-3" type="submit">next</button>
                     </div>
-                </form>
 
+                </form>
             </div>
 
         </div>
         <?php
         // ! Step @2 
         ?>
-        <?= form_open() ?>
         <div class="step">
             <!-- 
             <div class="content">
@@ -90,10 +89,9 @@
                             </div>
                             <div class="col-3 mr-2">
                                 <div class="p-0 form-group">
-                                    <select class="form-control" name="tid" onchange="product_add(this)">
+                                    <select class="form-control" name="service_id" onchange="product_add(this)">
                                         <option value="">Select Item</option>
                                         <?php
-
                                         foreach ($service as $s) {
                                         ?>
                                             <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
@@ -116,7 +114,7 @@
                             <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
 
                             <div class="col-2 p-0 mx-2">
-                                <input readonly type="text" class="form-control sub bg-white" name="sub">
+                                <input readonly type="text" class="form-control sub bg-white" name="subtotal">
                             </div>
 
                         </div>
@@ -131,7 +129,7 @@
             </div>
             <div class="button button_gap">
                 <button type="button" class="back-click">Back</button>
-                <button type="button" class="next-click">Next</button>
+                <button type="submit" class="next-click">Next</button>
             </div>
 
         </div>
@@ -147,23 +145,8 @@
             <div class="form-group">
 
                 <div class="row">
-                    <div class="col-6">
-                        <div>
-                            <label for="note" class="form-label text-success">Note:</label>
-                            <textarea class="form-control" id="note" placeholder="Enter Note" rows="12" name="note"></textarea>
-                        </div>
-                        <div class="d-flex">
-                            <div class="  mt-2 col-3">
-                                <label for="sub_amount" class="form-label text-success">Remark:</label>
-                                <input type="text" class="form-control" id="remark" placeholder="Paid or Due" name="remark">
-                            </div>
-                            <div class="col-4 mt-4">
-                                <input type="text" class="form-control mt-2 bg-white" id="dueAmount" readonly>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="col-6">
+                    <div class="col-12">
                         <div>
                             <label for="sub_amount" class="form-label text-success">Sub Amount:</label>
                             <input type="number" class="form-control" id="sub_amount" placeholder="Enter Sub Amount" name="subtotal">
@@ -191,7 +174,7 @@
 
             <div class="button button_gap1">
                 <button type="button" class="back-click">Back</button>
-                <button type="button" class="finish-click">Finish</button>
+                <button type="submit" class="finish-click">Finish</button>
             </div>
 
         </div>
@@ -225,11 +208,11 @@
 <script src="<?= base_url('assets/js/jquery.repeater.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/invoice.js') ?>"></script>
 <script>
-    var create_workspace = document.querySelector(".create-workspace");
+    var create_workspace = $(".create-workspace");
 
-    create_workspace.addEventListener('click', function(e) {
+    create_workspace.click((e) => {
         e.preventDefault();
-        // if(!validateform()){
+        // if (!validateform()) {
         //     return false;
         // }
 
@@ -240,25 +223,33 @@
         let data = {
             name,
             contact,
-            address
+            address,
+            created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
+            status: 1
         }
 
-//    next time check data by phone
-// if customers not exist then create new customer for loundry
+        // //    next time check data by phone
+        // // if customers not exist then create new customer for loundry
         $.ajax({
-            url: "<?= base_url('customer/create') ?>",
-            type: 'get',
+            url: "<?= base_url('customer/addcustomer') ?>",
+            type: 'POST',
             dataType: 'json',
             data,
             contentType: 'application/json',
             success: function(res) {
-                console.log(res);
+                if (res.length) {
+                    console.log(JSON.stringify(res));
+                    $('#text').text('');
+                    formnumber++;
+                    updateform();
+                    progress_forward();
+                }
             },
-            error: function(xhr, status, errorMessage) {}
+            error: function(xhr, status, errorMessage) {
+                console.log(errorMessage);
+            }
         });
-        formnumber++;
-        updateform();
-        progress_forward();
+
 
 
     });
