@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2022 at 09:15 AM
+-- Generation Time: Oct 11, 2022 at 09:44 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -37,6 +37,68 @@ CREATE TABLE `customers` (
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_order`
+--
+
+CREATE TABLE `customer_order` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `total_price` decimal(7,2) UNSIGNED NOT NULL,
+  `in_date` datetime NOT NULL,
+  `out_date` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `details` varchar(255) NOT NULL,
+  `qty` decimal(10,0) UNSIGNED NOT NULL,
+  `subtotal` decimal(7,2) UNSIGNED NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(7,2) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `name`, `price`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'shirt wash', '10.00', '2022-10-08 12:55:17', '2022-10-08 12:57:47', 1),
+(2, 'jens pent wash', '25.00', '2022-10-08 12:55:17', '2022-10-08 12:57:22', 1),
+(3, 'pant wash', '20.00', '2022-10-08 12:55:52', '2022-10-08 12:57:30', 1),
+(4, 't-shirt wash', '10.00', '2022-10-08 12:55:52', '2022-10-08 12:57:37', 1),
+(5, 'blazer wash', '100.00', '2022-10-08 12:57:01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -77,6 +139,25 @@ ALTER TABLE `customers`
   ADD UNIQUE KEY `contact` (`contact`);
 
 --
+-- Indexes for table `customer_order`
+--
+ALTER TABLE `customer_order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -90,7 +171,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customer_order`
+--
+ALTER TABLE `customer_order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
