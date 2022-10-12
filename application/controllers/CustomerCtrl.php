@@ -16,11 +16,11 @@ class CustomerCtrl extends CI_Controller
     public function customer_add()
     {
 
-        if ($customer = $this->input->post()) {
-            print_r(json_encode($customer));
-            $data['service'] = $this->cm->common_select('service');
-            $data['page'] = "customers/add";
-            $this->load->view('app', $data);
+        if ($customer = $this->input->get()) {
+
+            if ($customer_id = $this->cm->common_insert('customers', $customer)) {
+                echo json_decode($customer_id);
+            }
         }
     }
 

@@ -59,7 +59,7 @@ $route['dashboard'] = 'DashboardCtrl/index';
 // Customers Routes
 $route['customer/create']['get'] = 'CustomerCtrl/step';
 $route['customer/create']['post'] = 'CustomerCtrl/add';
-$route['customer/addcustomer']['post'] = 'CustomerCtrl/customer_add';
+$route['customer/addcustomer']['get'] = 'CustomerCtrl/customer_add';
 
 
 

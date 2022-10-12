@@ -23,7 +23,7 @@
         ?>
         <div class="step active">
             <div class="card-body">
-                <form method="POST">
+                <form method="GET">
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="">Phone:</label>
@@ -232,14 +232,13 @@
         // // if customers not exist then create new customer for loundry
         $.ajax({
             url: "<?= base_url('customer/addcustomer') ?>",
-            type: 'POST',
+            type: 'GET',
             dataType: 'json',
             data,
             contentType: 'application/json',
             success: function(res) {
-                if (res.length) {
-                    console.log(JSON.stringify(res));
-                    $('#text').text('');
+                if (res.length > 0) {
+                    console.log(res);
                     formnumber++;
                     updateform();
                     progress_forward();
