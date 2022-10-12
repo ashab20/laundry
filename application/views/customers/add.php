@@ -21,13 +21,13 @@
         <?php
         // ! Step @1 
         ?>
-        <div class="step active">
+        <div class="step active ">
             <div class="card-body">
-                <form method="GET">
+                <form method="GET" class="add_customer">
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="">Phone:</label>
-                            <input class="form-control" type="text" placeholder="Phone" name="contact" id="contact" />
+                            <input class="form-control" type="text" placeholder="Phone" name="contact" id="contact" onkeyup="checkContact(this)" />
                             <small class="form-text text-danger" id="text"><?= form_error('contact'); ?></small>
                             <!-- value="<?= set_value('contact') ?>" -->
                         </div>
@@ -50,12 +50,12 @@
                         <!-- valus="<?= set_value('address') ?>" -->
                     </div>
                     <div class="form-group button">
-                        <button class="create-workspace btn btn-primary btn-block mt-3" type="submit">next</button>
+                        <button class="create-workspace btn btn-primary btn-block mt-3" type="submit">Add</button>
+                        <button class="next next-click d-none btn btn-primary btn-block mt-3" type="button">Next</button>
                     </div>
 
                 </form>
             </div>
-
         </div>
         <?php
         // ! Step @2 
@@ -66,71 +66,74 @@
                 <h4>Let's set up a home for all your work</h4>
                 <p>You can always create another workspace later.</p>
             </div> -->
-            <div class="form-group">
-                <div class="row bg-light p-2 rounded-top">
-                    <div class="col-2"></div>
-                    <div class="col-3">
-                        <label for="">Test</label>
-                    </div>
-                    <div class="col-2"><label for="">Description</label></div>
-                    <div class="col-1"><label for="">Quantity</label></div>
-                    <div class="col-1"><label for="">Price</label></div>
-                    <div class="col-2"><label for="">Total</label></div>
-
-                </div>
-                <!-- outer repeater -->
-                <div class="repeater">
-                    <div data-repeater-list="outer-list">
-                        <div data-repeater-item class="row mt-2">
-                            <div class="col-1 mx-2">
-                                <button class="btn bg-danger text-white btn-sm mt-1" data-repeater-delete type="button">-
-                                    <i class="mdi mdi-minus-circle"></i>
-                                </button>
-                            </div>
-                            <div class="col-3 mr-2">
-                                <div class="p-0 form-group">
-                                    <select class="form-control" name="service_id" onchange="product_add(this)">
-                                        <option value="">Select Item</option>
-                                        <?php
-                                        foreach ($service as $s) {
-                                        ?>
-                                            <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
-                                                <?= ucfirst($s->name) ?>
-                                            </option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-2 p-0 mx-2">
-                                <input type="text" class="form-control descirbe" name="details">
-                            </div>
-                            <div class="col-1 p-0 mx-2">
-                                <input type="text" class="form-control qty" name="qty" onkeyup="get_count(this)">
-                            </div>
-                            <div class="col-1 p-0 mx-2">
-                                <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="price">
-                            </div>
-                            <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
-
-                            <div class="col-2 p-0 mx-2">
-                                <input readonly type="text" class="form-control sub bg-white" name="subtotal">
-                            </div>
-
+            <form method="get">
+                <input type="text" hidden id="customerId" name="customer_id">
+                <div class="form-group">
+                    <div class="row bg-light p-2 rounded-top">
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                            <label for="">Test</label>
                         </div>
-                    </div>
-                    <div class="col-2">
-                        <button class="btn bg-primary  text-white btn-sm" data-repeater-create type="button">+
-                            <i class="mdi mdi-plus-circle"></i>
-                        </button>
-                    </div>
+                        <div class="col-2"><label for="">Description</label></div>
+                        <div class="col-1"><label for="">Quantity</label></div>
+                        <div class="col-1"><label for="">Price</label></div>
+                        <div class="col-2"><label for="">Total</label></div>
 
+                    </div>
+                    <!-- outer repeater -->
+                    <div class="repeater">
+                        <div data-repeater-list="outer-list">
+                            <div data-repeater-item class="row mt-2">
+                                <div class="col-1 mx-2">
+                                    <button class="btn bg-danger text-white btn-sm mt-1" data-repeater-delete type="button">-
+                                        <i class="mdi mdi-minus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="col-3 mr-2">
+                                    <div class="p-0 form-group">
+                                        <select class="form-control" name="service_id" id="service_id" onchange="product_add(this)">
+                                            <option value="">Select Item</option>
+                                            <?php
+                                            foreach ($service as $s) {
+                                            ?>
+                                                <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
+                                                    <?= ucfirst($s->name) ?>
+                                                </option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2 p-0 mx-2">
+                                    <input type="text" class="form-control descirbe" name="details">
+                                </div>
+                                <div class="col-1 p-0 mx-2">
+                                    <input type="text" class="form-control qty" name="qty" onkeyup="get_count(this)">
+                                </div>
+                                <div class="col-1 p-0 mx-2">
+                                    <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="price">
+                                </div>
+                                <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
+
+                                <div class="col-2 p-0 mx-2">
+                                    <input readonly type="text" class="form-control sub bg-white" name="subtotal">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn bg-primary  text-white btn-sm" data-repeater-create type="button">+
+                                <i class="mdi mdi-plus-circle"></i>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="button button_gap">
-                <button type="button" class="back-click">Back</button>
-                <button type="submit" class="next-click">Next</button>
-            </div>
+                <div class="button button_gap">
+                    <button type="button" class="back-click">Back</button>
+                    <button type="submit" class="next-click create_porduct">Next</button>
+                </div>
+            </form>
 
         </div>
         <?php
@@ -208,26 +211,80 @@
 <script src="<?= base_url('assets/js/jquery.repeater.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/invoice.js') ?>"></script>
 <script>
-    var create_workspace = $(".create-workspace");
+    let customerId = $('#customerId')
+    let contact = $('#contact');
+    let name = $('#name');
+    let address = $('#address');
+    // search contact with debounce
+    function debounce(func, timeout = 1000) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func.apply(this, args);
+            }, timeout);
+        };
+    }
 
-    create_workspace.click((e) => {
+    function checking(e) {
+        if (e.value != NaN) {
+            $.ajax({
+                url: `<?= base_url('customer/findcustomer') ?>`,
+                dataType: 'json',
+                type: "GET",
+                data: {
+                    phone: e.value.trim()
+                },
+                contentType: 'application/json',
+                success: function(res) {
+                    if (res.length > 0) {
+                        // $(".add_customer").addClass('d-none');
+                        // $(".table").addClass('d-block');
+                        name.val(res[0].name).attr({
+                            readonly: true
+                        });
+                        contact.val(res[0].contact).attr({
+                            readonly: true
+                        })
+                        address.val(res[0].address).attr({
+                            readonly: true
+                        })
+                        $("#customerId").val(res[0].id)
+                        $('.next').removeClass('d-none')
+                        $('.create-workspace').addClass('d-none')
+                        // console.log(res[0]);
+                        // formnumber++;
+                        // updateform();
+                        // progress_forward();
+                    }
+                },
+                error: function(xhr, status, errorMessage) {
+                    name.val("")
+                    address.val("")
+                    $("#customerId").val(null)
+                }
+            });
+        }
+
+    }
+    const checkContact = debounce((e) => checking(e));
+
+    var create_customer = $(".create-workspace");
+
+    create_customer.click((e) => {
         e.preventDefault();
         // if (!validateform()) {
         //     return false;
         // }
 
-        let contact = $('#contact').val();
-        let name = $('#name').val();
-        let address = $('#address').val();
 
         let data = {
-            name,
-            contact,
-            address,
+            name: name.val(),
+            contact: contact.val(),
+            address: address.val(),
             created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
             status: 1
         }
-
         // //    next time check data by phone
         // // if customers not exist then create new customer for loundry
         $.ajax({
@@ -237,17 +294,54 @@
             data,
             contentType: 'application/json',
             success: function(res) {
-                if (res.length > 0) {
-                    console.log(res);
+                if (res) {
+                    $("#customerId").val(res);
                     formnumber++;
                     updateform();
                     progress_forward();
                 }
             },
-            error: function(xhr, status, errorMessage) {
-                console.log(errorMessage);
-            }
+            error: function(xhr, status, errorMessage) {}
         });
+    });
+
+
+    // products_add
+    var create_porduct = $(".create_porduct");
+
+    create_porduct.click((e) => {
+        e.preventDefault();
+        const data = {
+            customer_id: customerId.val(),
+            service_id: $('#service_id').val(),
+            details: $(".descirbe").val(),
+            qty: $(".qty").val(),
+            price: $(".price").val(),
+            sub: $(".sub").val(),
+            created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
+            status: 1        
+    }
+
+    console.log(data);
+
+    // //    next time check data by phone
+    // // if customers not exist then create new customer for loundry
+    $.ajax({
+        url: "<?= base_url('customer/addproduct') ?>",
+        type: 'GET',
+        dataType: 'json',
+        data,
+        contentType: 'application/json',
+        success: function(res) {
+            if (res) {
+                $("#customerId").val(res);
+                formnumber++;
+                updateform();
+                progress_forward();
+            }
+        },
+        error: function(xhr, status, errorMessage) {}
+    });
 
 
 

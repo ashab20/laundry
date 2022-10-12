@@ -7,8 +7,6 @@ let formnumber=0;
 
 
 
-
-
 next_click.forEach(function(next_page){
     next_page.addEventListener('click',function(){
          if(!validateform()){

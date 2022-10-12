@@ -11,7 +11,22 @@ class CustomerCtrl extends CI_Controller
         // $this->load->library('form_validation');
     }
 
-    // *** Addd customers
+    // *** Add customers
+
+    public function find_customer()
+    {
+
+        if ($con['contact'] = $this->input->get('phone')) {
+
+            // if ($customer =$this->db->where($con)->get('customers')->row()) {
+            //     print_r( json_decode($customer));
+            // }
+            if ($customer = $this->cm->common_select("customers", "*", $con)) {
+                print_r(json_encode($customer));
+            }
+        }
+    }
+    // *** Add customers
 
     public function customer_add()
     {
@@ -21,6 +36,20 @@ class CustomerCtrl extends CI_Controller
             if ($customer_id = $this->cm->common_insert('customers', $customer)) {
                 echo json_decode($customer_id);
             }
+        }
+    }
+    // *** Add customers
+
+    public function products_add()
+    {
+        $product_id = [];
+        if ($products = $this->input->get()) {
+            foreach ($products as $p) {
+                if ($customer_id = $this->cm->common_insert('customers', $products)) {
+                    $product_id[] .= $p;
+                }
+            }
+            return $product_id;
         }
     }
 
