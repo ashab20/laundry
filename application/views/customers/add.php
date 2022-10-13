@@ -60,13 +60,14 @@
         <?php
         // ! Step @2 
         ?>
-        <div class="step">
-            <!-- 
+        <form method="get" class="create_product">
+            <div class="step">
+                <!-- 
             <div class="content">
                 <h4>Let's set up a home for all your work</h4>
                 <p>You can always create another workspace later.</p>
             </div> -->
-            <form method="get">
+
                 <input type="text" hidden id="customerId" name="customer_id">
                 <div class="form-group">
                     <div class="row bg-light p-2 rounded-top">
@@ -111,7 +112,7 @@
                                     <input type="text" class="form-control qty" name="qty" onkeyup="get_count(this)">
                                 </div>
                                 <div class="col-1 p-0 mx-2">
-                                    <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="price">
+                                    <input type="text" onkeyup="get_pricecount(this)" class="form-control price" name="subtotal">
                                 </div>
                                 <!-- <input type="text" hidden  class="test_id" name="test_id"> -->
 
@@ -131,56 +132,57 @@
                 </div>
                 <div class="button button_gap">
                     <button type="button" class="back-click">Back</button>
-                    <button type="submit" class="next-click create_porduct">Next</button>
+                    <button type="button" class="next-click">Next</button>
                 </div>
-            </form>
 
-        </div>
-        <?php
-        // ! Step @3 
-        ?>
-        <div class="step">
 
-            <div class="content">
-                <h4>Payment</h4>
             </div>
-            <!-- final counter -->
-            <div class="form-group">
+            <?php
+            // ! Step @3 
+            ?>
+            <div class="step">
 
-                <div class="row">
+                <div class="content">
+                    <h4>Payment</h4>
+                </div>
+                <!-- final counter -->
+                <div class="form-group">
 
-                    <div class="col-12">
-                        <div>
-                            <label for="sub_amount" class="form-label text-success">Sub Amount:</label>
-                            <input type="number" class="form-control" id="sub_amount" placeholder="Enter Sub Amount" name="subtotal">
-                        </div>
-                        <div>
-                            <label for="discount" class="form-label text-success">Discount:</label>
-                            <input type="number" class="form-control" id="discount" placeholder="Enter Discount" name="discount" onkeyup="total_amount_calc()" value="0">
-                        </div>
-                        <div>
-                            <label for="tax" class="form-label text-success">Tax (%):</label>
-                            <input type="number" class="form-control" id="tax" placeholder="Enter Tax" name="tax" onkeyup="total_amount_calc()" value="0">
-                        </div>
-                        <div>
-                            <label for="total_amount" class="form-label text-success">Total Amount:</label>
-                            <input type="number" value="0" class="form-control" id="total_amount" placeholder="Enter Total Amount" name="total">
-                        </div>
-                        <div>
-                            <label for="payment" class="form-label text-success">Pay Amount:</label>
-                            <input type="number" value="0" class="form-control" id="payment" placeholder="Enter Pay Amount" name="payment">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div>
+                                <label for="sub_amount" class="form-label text-success">Sub Amount:</label>
+                                <input type="number" class="form-control" id="sub_amount" placeholder="Enter Sub Amount" name="subtotal">
+                            </div>
+                            <div>
+                                <label for="discount" class="form-label text-success">Discount:</label>
+                                <input type="number" class="form-control" id="discount" placeholder="Enter Discount" name="discount" onkeyup="total_amount_calc()" value="0">
+                            </div>
+                            <div>
+                                <label for="tax" class="form-label text-success">Tax (%):</label>
+                                <input type="number" class="form-control" id="tax" placeholder="Enter Tax" name="tax" onkeyup="total_amount_calc()" value="0">
+                            </div>
+                            <div>
+                                <label for="total_amount" class="form-label text-success">Total Amount:</label>
+                                <input type="number" value="0" class="form-control" id="total_amount" placeholder="Enter Total Amount" name="total_price">
+                            </div>
+                            <div>
+                                <label for="payment" class="form-label text-success">Pay Amount:</label>
+                                <input type="number" value="0" class="form-control" id="payment" placeholder="Enter Pay Amount" name="payment">
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="button button_gap1">
+                    <button type="button" class="back-click">Back</button>
+                    <button type="submit" class="create_porduct finish-click">Finish</button>
+                </div>
+
             </div>
-
-
-            <div class="button button_gap1">
-                <button type="button" class="back-click">Back</button>
-                <button type="submit" class="finish-click">Finish</button>
-            </div>
-
-        </div>
+        </form>
         <?php
         // ! Step Final 
         ?>
@@ -199,7 +201,6 @@
             </div>
 
         </div>
-        </form>
     </div>
 
 </div>
@@ -306,42 +307,48 @@
     });
 
 
-    // products_add
+    // * products_add
     var create_porduct = $(".create_porduct");
 
+    let data = []
     create_porduct.click((e) => {
         e.preventDefault();
-        const data = {
-            customer_id: customerId.val(),
-            service_id: $('#service_id').val(),
-            details: $(".descirbe").val(),
-            qty: $(".qty").val(),
-            price: $(".price").val(),
-            sub: $(".sub").val(),
-            created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
-            status: 1        
-    }
+        // var products = [...data, {
+        //     customer_id: customerId.val(),
+        //     service_id: $('#service_id').val(),
+        //     details: $(".descirbe").val(),
+        //     qty: $(".qty").val(),
+        //     price: $(".price").val(),
+        //     sub: $(".sub").val(),
+        //     created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
+        //     status: 1
+        // }]
+        // outer-list
+        let data = $('form.create_product').serialize();
 
-    console.log(data);
+        // let repeaterData = $('.repeater').find('input')
 
-    // //    next time check data by phone
-    // // if customers not exist then create new customer for loundry
-    $.ajax({
-        url: "<?= base_url('customer/addproduct') ?>",
-        type: 'GET',
-        dataType: 'json',
-        data,
-        contentType: 'application/json',
-        success: function(res) {
-            if (res) {
-                $("#customerId").val(res);
-                formnumber++;
-                updateform();
-                progress_forward();
-            }
-        },
-        error: function(xhr, status, errorMessage) {}
-    });
+        console.log(data);
+
+
+        // //    next time check data by phone
+        // // if customers not exist then create new customer for loundry
+        $.ajax({
+            url: "<?= base_url('customer/addproduct') ?>",
+            type: 'GET',
+            dataType: 'json',
+            data,
+            contentType: 'application/json',
+            success: function(res) {
+                if (res) {
+                    console.log(res);
+                    formnumber++;
+                    updateform();
+                    progress_forward();
+                }
+            },
+            error: function(xhr, status, errorMessage) {}
+        });
 
 
 

@@ -42,15 +42,30 @@ class CustomerCtrl extends CI_Controller
 
     public function products_add()
     {
+
+
+        $all = $this->input->get();
         $product_id = [];
-        if ($products = $this->input->get()) {
-            foreach ($products as $p) {
-                if ($customer_id = $this->cm->common_insert('customers', $products)) {
-                    $product_id[] .= $p;
-                }
-            }
-            return $product_id;
-        }
+        $outerList = $this->input->get('outer-list');
+        $order['created_at'] = $order['in_date'] =  date('Y-m-d H:i:s');
+        $order['status'] = 1;
+        $order['customer_id'] = $this->input->get('customer_id');
+
+        $this->db->trans_start();
+
+        foreach ($outerList as $outer) {
+            // Product
+            $product = $outer;
+            $product['created_at'] =  date('Y-m-d H:i:s');
+            $product['status'] = 1;
+            $product['customer_id'] = $this->input->get('customer_id');
+            $this->db->insert('products', $product);
+            $product_id[] .= $this->db->insert_id();
+        };
+        $order['total_price'] = $this->input->get('total_price');
+        $order['product_id'] =  json_encode($product_id);
+        $this->db->insert('customer_order', $order);
+        $this->db->trans_complete();
     }
 
 

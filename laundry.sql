@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2022 at 09:44 AM
+-- Generation Time: Oct 13, 2022 at 09:52 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -38,6 +38,20 @@ CREATE TABLE `customers` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `contact`, `address`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'Ashab uddin', '01840065756', 'chittagong\n                  ', '2022-10-12 03:50:00', NULL, 1),
+(3, 'Biplob Uiddn', '018400932423', 'Chittagong\n                  ', '2022-10-12 03:53:52', NULL, 1),
+(4, 'Rahat Hasan', '01590065756', 'Ctg\n                  ', '2022-10-12 04:06:06', NULL, 1),
+(5, 'Tawhidul Islam', '01560003242', 'Bangladesh\n                  ', '2022-10-12 04:11:12', NULL, 1),
+(7, 'Test', '017400881987', 'get work\n                  ', '2022-10-12 04:22:02', NULL, 1),
+(12, 'Ashab Uddin', '01840088189', 'Chittagong', '2022-10-12 07:16:59', NULL, 1),
+(15, 'Test', '01450001231', 'work', '2022-10-12 07:47:00', NULL, 1),
+(16, 'Mr. Rabib Hasan', '01735061377', 'Bhola', '2022-10-13 04:02:04', NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -47,7 +61,7 @@ CREATE TABLE `customers` (
 CREATE TABLE `customer_order` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `product_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `total_price` decimal(7,2) UNSIGNED NOT NULL,
   `in_date` datetime NOT NULL,
   `out_date` datetime NOT NULL,
@@ -55,6 +69,13 @@ CREATE TABLE `customer_order` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer_order`
+--
+
+INSERT INTO `customer_order` (`id`, `customer_id`, `product_id`, `total_price`, `in_date`, `out_date`, `status`, `created_at`, `updated_at`) VALUES
+(2, 7, '[\"27\",\"28\"]', '110.00', '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1, '2022-10-13 09:49:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -73,6 +94,14 @@ CREATE TABLE `products` (
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `customer_id`, `details`, `qty`, `subtotal`, `service_id`, `created_at`, `updated_at`, `status`) VALUES
+(27, 7, '', '4', '100.00', 2, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1),
+(28, 7, '', '1', '10.00', 1, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -171,19 +200,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `service`
