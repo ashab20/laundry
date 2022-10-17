@@ -1,6 +1,9 @@
 <!-- Customers List start -->
 <div class="card mb-3">
   <div class="card-header">
+    <?php 
+    print_r($data);
+    ?>
     <div class="row align-items-center justify-content-between">
       <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
         <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Recent Purchases</h5>

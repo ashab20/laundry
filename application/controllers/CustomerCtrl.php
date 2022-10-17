@@ -11,6 +11,9 @@ class CustomerCtrl extends CI_Controller
         // $this->load->library('form_validation');
     }
 
+
+
+
     // *** Add customers
 
     public function find_customer()
@@ -43,16 +46,13 @@ class CustomerCtrl extends CI_Controller
     public function products_add()
     {
 
-
         $all = $this->input->get();
         $product_id = [];
         $outerList = $this->input->get('outer-list');
         $order['created_at'] = $order['in_date'] =  date('Y-m-d H:i:s');
         $order['status'] = 1;
         $order['customer_id'] = $this->input->get('customer_id');
-
         $this->db->trans_start();
-
         foreach ($outerList as $outer) {
             // Product
             $product = $outer;
@@ -136,25 +136,6 @@ class CustomerCtrl extends CI_Controller
                 $this->load->view('customer/create');
             }
         }
-
-        // $customer['name'] = $this->input->get('name');
-        // $customer['contact'] = $this->input->get('contact');
-        // $customer['address'] = $this->input->get('address');
-        // echo "<script>console.log('worked)</script>";
-        // $customer['created_at'] = date('Y-m-d H:i:s');
-        // $customer['status'] = 1;
-
-        // return json_encode( $customer);
-
-        // if ($this->cm->common_insert('customers', $customer)) {
-        //     $this->session->set_flashdata('msg', '<b class="text-info">Registration successfull</b>');
-        //     echo "<script>console.log('worked)</script>";
-        //     redirect('/');
-        // } else {
-        //     echo "<script>console.log('not worked)</script>";
-        //     $this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
-        //     $this->load->view('customer/create');
-        // }
     }
 
 
