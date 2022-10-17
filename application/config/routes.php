@@ -54,7 +54,18 @@ $route['registration'] = 'AuthCtrl/registration';
 $route['logout']['get'] = 'AuthCtrl/logout';
 
 
+
+// quick service
+$route['quick/create']['get'] = 'QuickCtrl/step';
+$route['quick/create']['post'] = 'QuickCtrl/add';
+$route['quick/addcustomer']['get'] = 'QuickCtrl/customer_add';
+$route['quick/addproduct']['get'] = 'QuickCtrl/products_add';
+$route['quick/findcustomer']['get'] = 'QuickCtrl/find_customer';
+
 $route['dashboard'] = 'DashboardCtrl/index';
+
+
+
 
 // Customers Routes
 $route['customer/create']['get'] = 'CustomerCtrl/step';

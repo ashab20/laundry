@@ -19,6 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
         <div class="navbar-vertical-content perfect-scrollbar scrollbar">
           <ul class="navbar-nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="<?= base_url('quick/create') ?>">
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fab fa-trello"></span></span><span class="nav-link-text"> Quick Service</span>
+                </div>
+              </a></li>
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#home" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Home</span>
                 </div>
@@ -45,79 +49,23 @@
               </a>
               <ul class="nav collapse show" id="customers" data-parent="#navbarVerticalCollapse">
                 <li class="nav-item active">
-                  <a class="nav-link" href="<?= base_url('customer/create')?>">Add</a>
+                  <a class="nav-link" href="<?= base_url('customer/create') ?>">Add</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="customers/dashboard-alt.html">Dashboard alt</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="customers/dashboard-alt.html">Update</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="customers/feed.html">Feed</a>
+                <li class="nav-item"><a class="nav-link" href="customers/feed.html">List</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="customers/landing.html">Landing</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#pages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-copy"></span></span><span class="nav-link-text">Pages</span>
-                </div>
-              </a>
-              <ul class="nav collapse" id="pages" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item"><a class="nav-link" href="pages/activity.html">Activity</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/associations.html">Associations</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/billing.html">Billing</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/customer-details.html">Customer details</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/event-detail.html">Event detail</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/event-create.html">Event create</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/events.html">Events</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/faq.html">Faq</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/invoice.html">Invoice</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/invite-people.html">Invite people</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/notifications.html">Notifications</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/people.html">People</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/pricing.html">Pricing</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/pricing-alt.html">Pricing alt</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/profile.html">Profile</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/settings.html">Settings</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/starter.html">Starter</a>
-                </li>
-                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#pages-errors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages-errors">Errors</a>
-                  <ul class="nav collapse" id="pages-errors" data-parent="#pages">
-                    <li class="nav-item"><a class="nav-link" href="pages/errors/404.html">404</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="pages/errors/500.html">500</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="chat.html">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-comments"></span></span><span class="nav-link-text"> Chat</span>
-                </div>
-              </a></li>
-            <li class="nav-item"><a class="nav-link" href="kanban.html">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fab fa-trello"></span></span><span class="nav-link-text"> Kanban</span>
-                </div>
-              </a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.html">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span><span class="nav-link-text"> Calendar</span>
-                </div>
-              </a></li>
+
+            <div class="navbar-vertical-divider">
+              <hr class="navbar-vertical-hr my-2" />
+            </div>
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#email" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="email">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span><span class="nav-link-text">Email</span>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span><span class="nav-link-text">Laundry</span>
                 </div>
               </a>
               <ul class="nav collapse" id="email" data-parent="#navbarVerticalCollapse">
@@ -130,7 +78,7 @@
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-unlock-alt"></span></span><span class="nav-link-text">Authentication</span>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-unlock-alt"></span></span><span class="nav-link-text">Tailor</span>
                 </div>
               </a>
               <ul class="nav collapse" id="authentication" data-parent="#navbarVerticalCollapse">
@@ -142,34 +90,9 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="authentication/basic/register.html">Register</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/basic/forgot-password.html">Forgot password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/basic/reset-password.html">Reset password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/basic/confirm-mail.html">Confirm mail</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/basic/lock-screen.html">Lock screen</a>
-                    </li>
                   </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication-card" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication-card">Card</a>
-                  <ul class="nav collapse" id="authentication-card" data-parent="#authentication">
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/login.html">Login</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/logout.html">Logout</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/register.html">Register</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/forgot-password.html">Forgot password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/reset-password.html">Reset password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/confirm-mail.html">Confirm mail</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/card/lock-screen.html">Lock screen</a>
-                    </li>
-                  </ul>
-                </li>
+
                 <li class="nav-item"><a class="nav-link dropdown-indicator" href="#authentication-split" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="authentication-split">Split</a>
                   <ul class="nav collapse" id="authentication-split" data-parent="#authentication">
                     <li class="nav-item"><a class="nav-link" href="authentication/split/login.html">Login</a>
@@ -188,32 +111,6 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="authentication/wizard.html">Wizard</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#!" data-toggle="modal" data-target="#authentication-modal">In Modal</a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#e-commerce" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="e-commerce">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-cart-plus"></span></span><span class="nav-link-text">E commerce</span>
-                </div>
-              </a>
-              <ul class="nav collapse" id="e-commerce" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item"><a class="nav-link" href="e-commerce/product-list.html">Product list</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/product-grid.html">Product grid</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/product-details.html">Product details</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/orders.html">Orders</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/order-details.html">Order details</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/customers.html">Customers</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/shopping-cart.html">Shopping cart</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="e-commerce/checkout.html">Checkout</a>
-                </li>
               </ul>
             </li>
           </ul>
@@ -221,10 +118,22 @@
             <hr class="navbar-vertical-hr my-2" />
           </div>
           <ul class="navbar-nav flex-column">
-            <li class="nav-item"><a class="nav-link" href="widgets.html">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-poll"></span></span><span class="nav-link-text"> Widgets</span>
+
+            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#pages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages">
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-copy"></span></span><span class="nav-link-text">Order</span>
                 </div>
-              </a></li>
+              </a>
+              <ul class="nav collapse" id="pages" data-parent="#navbarVerticalCollapse">
+                <li class="nav-item"><a class="nav-link" href="pages/activity.html">Order List</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pages/associations.html">Delivered</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pages/billing.html">Completed</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pages/customer-details.html">Pending</a>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="components">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-puzzle-piece"></span></span><span class="nav-link-text">Components</span>
                 </div>
@@ -425,25 +334,11 @@
           </div>
           <ul class="navbar-nav flex-column">
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#documentation" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="documentation">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-book"></span></span><span class="nav-link-text">Documentation</span>
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-book"></span></span><span class="nav-link-text">Services</span>
                 </div>
               </a>
               <ul class="nav collapse" id="documentation" data-parent="#navbarVerticalCollapse">
                 <li class="nav-item"><a class="nav-link" href="documentation/getting-started.html">Getting started</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/file-structure.html">File structure</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/customization.html">Customization</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/dark-mode.html">Dark mode</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/fluid-layout.html">Fluid layout</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/gulp.html">Gulp</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/RTL.html">RTL</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="documentation/plugins.html">Plugins</a>
                 </li>
               </ul>
             </li>

@@ -63,6 +63,7 @@ class CustomerCtrl extends CI_Controller
             $product_id[] .= $this->db->insert_id();
         };
         $order['total_price'] = $this->input->get('total_price');
+        $order['paid'] = $this->input->get('payment');
         $order['product_id'] =  json_encode($product_id);
         $this->db->insert('customer_order', $order);
         $this->db->trans_complete();
