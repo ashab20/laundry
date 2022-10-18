@@ -22,39 +22,32 @@
             <li class="nav-item"><a class="nav-link" href="<?= base_url('quick/create') ?>">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fab fa-trello"></span></span><span class="nav-link-text"> Quick Service</span>
                 </div>
-              </a></li>
-            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#home" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Home</span>
+              </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="<?= base_url('dashboard') ?>">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Dashboard</span>
                 </div>
               </a>
-              <ul class="nav collapse" id="home" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="home/dashboard-alt.html">Dashboard alt</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="home/feed.html">Feed</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="home/landing.html">Landing</a>
-                </li>
-              </ul>
             </li>
             <!-- ! customers  -->
             <li class="nav-item"><a class="nav-link dropdown-indicator" href="#customers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="customers">
                 <div class="d-flex align-items-center">
                   <span class="nav-link-icon">
-                    <span class="fas fa-chart-pie"></span>
+                    <span class="fas fa-puzzle-piece"></span>
                   </span>
                   <span class="nav-link-text">Customers</span>
                 </div>
               </a>
               <ul class="nav collapse show" id="customers" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('customer/create') ?>">Add</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="customers/dashboard-alt.html">Update</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="customers/feed.html">List</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url('customer/list')?>">List</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="customers/landing.html">Landing</a>
                 </li>
@@ -134,7 +127,7 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="components">
+            <!-- <li class="nav-item"><a class="nav-link dropdown-indicator" href="#components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="components">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-puzzle-piece"></span></span><span class="nav-link-text">Components</span>
                 </div>
               </a>
@@ -327,7 +320,7 @@
                 <li class="nav-item"><a class="nav-link" href="plugins/typed-text.html">Typed text</a>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
           <div class="navbar-vertical-divider">
             <hr class="navbar-vertical-hr my-2" />
@@ -342,16 +335,16 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="changelog.html">
+            <!-- <li class="nav-item"><a class="nav-link" href="changelog.html">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-code-branch"></span></span><span class="nav-link-text"> Changelog</span><span class="badge badge-pill ml-2 badge-soft-primary">v2.8.2</span>
                 </div>
-              </a></li>
+              </a></li> -->
           </ul>
           <div class="settings px-3 px-xl-0">
             <div class="navbar-vertical-divider px-0">
               <hr class="navbar-vertical-hr my-3" />
-            </div><a class="btn btn-sm btn-block btn-purchase mb-3" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">
-              Purchase</a>
+            </div><a class="btn btn-sm btn-block btn-warning mb-3" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">
+              Log Out</a>
           </div>
         </div>
       </div>

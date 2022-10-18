@@ -4,6 +4,8 @@
             <div class="top-div">
                 <!-- <img src="https://imgur.com/3U0Yawd.png"> -->
                 <h5> Add Customer</h5>
+
+                <button class="edit-customers d-none btn btn-info absolute right-0 m-2" type="button">Edit</button>
             </div>
             <ul class="progress-bar">
                 <li class="active"></li>
@@ -23,6 +25,7 @@
         ?>
         <div class="step active ">
             <div class="card-body">
+
                 <form method="GET" class="add_customer">
                     <div class="form-row">
                         <input type="text" name="id" hidden id="id">
@@ -53,6 +56,7 @@
                     <div class="form-group button">
                         <button class="create-workspace btn btn-primary btn-block mt-3 m-2" type="button">Add</button>
                         <button class="next next-click d-none btn btn-primary btn-block mt-3 m-2" type="button">Next</button>
+                        <button class="update d-none btn btn-primary btn-block mt-3 m-2" type="button">Update</button>
                     </div>
 
                 </form>
@@ -198,7 +202,7 @@
                 <p>You have completed onboarding,you can start using the Eden!</p>
             </div>
             <div class="button launch">
-                <button>Launch Eden</button>
+                <button>Print</button>
             </div>
 
         </div>
@@ -217,6 +221,7 @@
     let contact = $('#contact');
     let name = $('#name');
     let address = $('#address');
+    let editCustomers = $('.edit-customers');
 
     // search contact with debounce
     function debounce(func, timeout = 1000) {
@@ -246,7 +251,7 @@
                         name.val(res[0].name).attr({
                             readonly: true
                         });
-                        $('id').val(res[0].id);
+                        $('#id').val(res[0].id);
                         contact.val(res[0].contact).attr({
                             readonly: true
                         })
@@ -254,8 +259,11 @@
                             readonly: true
                         })
                         $("#customerId").val(res[0].id)
-                        $('.next').removeClass('d-none')
-                        $('.create-workspace').addClass('edit').removeClass('create-workspace').text('Edit');
+                        $('.create-workspace').addClass('d-none');
+                        $('.next').removeClass('d-none');
+                        // $('.create-workspace').addClass('edit-customers').text('Edit').removeClass('create-workspace');
+                        create_customer = null;
+                        editCustomers.removeClass('d-none');
 
                     }
                 },
@@ -302,8 +310,11 @@
     });
 
 
-    let edit = $('.edit');
-    edit.click(() => {
+
+    editCustomers.click(() => {
+        
+        $('.next').addClass('d-none')
+        $('.update').removeClass('d-none')
         name.attr({
             readonly: false
         });
@@ -314,8 +325,39 @@
             readonly: false
         })
     })
+// update customers
 
-
+   $('.update').click((e) => {
+        e.preventDefault();
+        let customersId = $('#id');
+        let data = {
+            id:customersId.val(),
+            name: name.val(),
+            contact: contact.val(),
+            address: address.val(),
+            created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
+            status: 1
+        }
+        // //    next time check data by phone
+        // // if customers not exist then create new customer for loundry
+        $.ajax({
+            url: `<?= base_url('quick/update') ?>`,
+            type: 'GET',
+            dataType: 'json',
+            data,
+            contentType: 'application/json',
+            success: function(res) {
+                console.log(res);
+                if (res) {
+                    formnumber++;
+                    updateform();
+                    progress_forward();
+                    editCustomers.addClass('d-none');
+                }
+            },
+            error: function(xhr, status, errorMessage) {}
+        });
+    });
     // * products_add
     var create_porduct = $(".create_porduct");
 

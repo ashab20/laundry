@@ -134,6 +134,34 @@ class QuickCtrl extends CI_Controller
             }
         }
     }
+    // *** update customers
+
+    public function edit()
+    {
+
+        if ($this->input->get()) {
+
+            $customer_Id['id'] =  $this->input->get('id');
+            $customer['name'] = $this->input->get('name');
+            $customer['contact'] = $this->input->get('contact');
+            $customer['address'] = $this->input->get('address');
+            $customer['created_at'] =  date('Y-m-d H:i:s');
+            $customer['status'] = 1;
+            if ($customer_id = $this->cm->common_update('customers', $customer, $customer_Id)) {
+                echo $customer_id;
+            }
+        }
+
+
+        // if ($customer_id = $this->cm->common_update('customers', $customer,$customer_Id)) {
+
+        //     return $customer_id;
+        // } else {
+        //     $this->session->set_flashdata('msg', '<b class="text-danger">Please Try again</b>');
+        //     $this->load->view('customer/create');
+        // }
+
+    }
 
 
 

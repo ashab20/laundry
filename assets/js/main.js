@@ -14,7 +14,8 @@ next_click.forEach(function(next_page){
         }
          formnumber++;
          updateform();
-         progress_forward();
+         progress_forward();         
+        $('.edit-customers').addClass('d-none')
     });
 });
 

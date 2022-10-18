@@ -59,6 +59,7 @@ $route['logout']['get'] = 'AuthCtrl/logout';
 $route['quick/create']['get'] = 'QuickCtrl/step';
 $route['quick/create']['post'] = 'QuickCtrl/add';
 $route['quick/addcustomer']['get'] = 'QuickCtrl/customer_add';
+$route['quick/update']['get'] = 'QuickCtrl/edit';
 $route['quick/addproduct']['get'] = 'QuickCtrl/products_add';
 $route['quick/findcustomer']['get'] = 'QuickCtrl/find_customer';
 
@@ -68,11 +69,11 @@ $route['dashboard'] = 'DashboardCtrl/index';
 
 
 // Customers Routes
-$route['customer/create']['get'] = 'CustomerCtrl/step';
-$route['customer/create']['post'] = 'CustomerCtrl/add';
-$route['customer/addcustomer']['get'] = 'CustomerCtrl/customer_add';
-$route['customer/addproduct']['get'] = 'CustomerCtrl/products_add';
-$route['customer/findcustomer']['get'] = 'CustomerCtrl/find_customer';
+$route['customer/create']['get'] = 'CustomerCtrl/create';
+$route['customer/create']['post'] = 'CustomerCtrl/create';
+$route['customer/list']['get'] = 'CustomerCtrl/index';
+$route['customer/update/(:num)']['get'] = 'CustomerCtrl/update/$1';
+$route['customer/update/(:num)']['post'] = 'CustomerCtrl/update/$1';
 
 
 
