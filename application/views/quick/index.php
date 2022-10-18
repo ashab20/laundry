@@ -65,21 +65,29 @@
         <?php
         // ! Step @2 
         ?>
+
         <form method="get" class="create_product">
             <div class="step">
-                <!-- 
-            <div class="content">
-                <h4>Let's set up a home for all your work</h4>
-                <p>You can always create another workspace later.</p>
-            </div> -->
 
+                <div class="content">
+                    <h4>Let's set up a home for all your work</h4>
+                    <p>You can always create another workspace later.</p>
+                </div>
+                <div class="row m-4 justify-content-end">
+                    <select name="" id="serve" class="form-control col-3 float-end">
+                        <option value="">Select...</option>
+                        <option value="laundry">Laudry</option>
+                        <option value="tailor">Tailor</option>
+                    </select>
+                </div>
                 <input type="text" hidden id="customerId" name="customer_id">
-                <div class="form-group">
+                <div class="form-group d-none" id="service-content">
                     <div class="row bg-light p-2 rounded-top">
-                        <div class="col-2"></div>
+                        <!-- <div class="col-2"></div> -->
                         <div class="col-3">
-                            <label for="">Laundry</label>
+                            <label for="" id="serveName">Laundry</label>
                         </div>
+                        <div class="col-1"><label for="">Size</label></div>
                         <div class="col-2"><label for="">Description</label></div>
                         <div class="col-1"><label for="">Quantity</label></div>
                         <div class="col-1"><label for="">Price</label></div>
@@ -95,21 +103,42 @@
                                         <i class="mdi mdi-minus-circle"></i>
                                     </button>
                                 </div>
-                                <div class="col-3 mr-2">
+                                <div class="col-2 mr-2">
                                     <div class="p-0 form-group">
-                                        <select class="form-control" name="service_id" id="service_id" onchange="product_add(this)">
+                                        <select class="form-control laundry d-none" name="service_id" id="service_id" onchange="product_add(this)">
                                             <option value="">Select Item</option>
                                             <?php
                                             foreach ($service as $s) {
-                                                if($s->role === "LAUNDRY"){
+                                                if ($s->role === "LAUNDRY") {
                                             ?>
-                                                <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
-                                                    <?= ucfirst($s->name) ?>
-                                                </option>
-                                            <?php } }
-                                            ?>
+                                                    <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
+                                                        <?= ucfirst($s->name) ?>
+                                                    </option>
+                                            <?php }
+                                            } ?>
+                                        </select>
+                                        <select class="form-control tailor d-none" name="service_id" id="service_id" onchange="product_add(this)">
+                                            <option value="">Select Item</option>
+                                            <?php
+                                            foreach ($service as $s) {
+                                                if ($s->role === "TAILOR") { ?>
+                                                    <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
+                                                        <?= ucfirst($s->name) ?>
+                                                    </option>
+                                            <?php }
+                                            } ?>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-1 p-0 mx-2">
+                                    <select name="" id="" class="form-control">
+                                        <option value="">select..</option>
+                                        <option value="s">S</option>
+                                        <option value="m">M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                        <option value="xxl">XXL</option>
+                                    </select>
                                 </div>
                                 <div class="col-2 p-0 mx-2">
                                     <input type="text" class="form-control descirbe" name="details">
@@ -140,8 +169,6 @@
                     <button type="button" class="back-click">Back</button>
                     <button type="button" class="next-click">Next</button>
                 </div>
-
-
             </div>
             <?php
             // ! Step @3 
@@ -223,6 +250,8 @@
     let name = $('#name');
     let address = $('#address');
     let editCustomers = $('.edit-customers');
+    let serve = $('#serve');
+    let serviceContent = $('#service-content');
 
     // search contact with debounce
     function debounce(func, timeout = 1000) {
@@ -234,6 +263,18 @@
             }, timeout);
         };
     }
+
+    serve.change(() => {
+        if (serve.val() === "laundry") {
+            serviceContent.removeClass('d-none');
+            $('#serveName').text(serve.val().toUpperCase());
+            $('.laundry').removeClass('d-none');
+            $('.tailor').addClass('d-none');
+        } else if (serve.val() === "tailor") {
+            $('.laundry').addClass('d-none');
+            $('.tailor').removeClass('d-none');
+        }
+    })
 
     function checking(e) {
         if (e.value != NaN) {
@@ -313,7 +354,7 @@
 
 
     editCustomers.click(() => {
-        
+
         $('.next').addClass('d-none')
         $('.update').removeClass('d-none')
         name.attr({
@@ -326,13 +367,13 @@
             readonly: false
         })
     })
-// update customers
+    // update customers
 
-   $('.update').click((e) => {
+    $('.update').click((e) => {
         e.preventDefault();
         let customersId = $('#id');
         let data = {
-            id:customersId.val(),
+            id: customersId.val(),
             name: name.val(),
             contact: contact.val(),
             address: address.val(),
