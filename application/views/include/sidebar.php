@@ -44,12 +44,7 @@
                   <a class="nav-link" href="<?= base_url('customer/create') ?>">Add</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="customers/dashboard-alt.html">Update</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?= base_url('customer/list')?>">List</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="customers/landing.html">Landing</a>
+                  <a class="nav-link" href="<?= base_url('customer/list') ?>">List</a>
                 </li>
               </ul>
             </li>
@@ -343,7 +338,7 @@
           <div class="settings px-3 px-xl-0">
             <div class="navbar-vertical-divider px-0">
               <hr class="navbar-vertical-hr my-3" />
-            </div><a class="btn btn-sm btn-block btn-warning mb-3" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">
+            </div><a class="btn btn-sm btn-block btn-warning mb-3" href="<?= base_url('logout') ?>">
               Log Out</a>
           </div>
         </div>

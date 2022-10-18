@@ -74,6 +74,7 @@ $route['customer/create']['post'] = 'CustomerCtrl/create';
 $route['customer/list']['get'] = 'CustomerCtrl/index';
 $route['customer/update/(:num)']['get'] = 'CustomerCtrl/update/$1';
 $route['customer/update/(:num)']['post'] = 'CustomerCtrl/update/$1';
+$route['customer/delete/(:num)']['get'] = 'CustomerCtrl/delete/$1';
 
 
 

@@ -59,10 +59,10 @@
                                 <th class="align-middle"><a href="pages/customer-details.html"><?= $d->name ?></a></th>
                                 <td class="align-middle"><?= $d->contact ?></td>
                                 <td class="align-middle">
-                                <?= $d->address ?>
+                                    <?= $d->address ?>
                                 </td>
                                 <td class="align-middle text-right">
-                                    <?= $d->created_at?>
+                                    <?= $d->created_at ?>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <div class="dropdown text-sans-serif">
@@ -70,9 +70,9 @@
                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
                                             <div class="bg-white py-2">
                                                 <a class="dropdown-item" href="#!">View</a>
-                                                <a class="dropdown-item" href="<?= base_url('customer/update')?>/<?= $d->id?>">Edit</a>
+                                                <a class="dropdown-item" href="<?= base_url('customer/update') ?>/<?= $d->id ?>">Edit</a>
                                                 <a class="dropdown-item" href="#!">Refund</a>
-                                                <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="#!">Delete</a>
+                                                <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="<?= base_url("customer/delete/$d->id") ?>">Delete</a>
                                             </div>
                                         </div>
                                     </div>

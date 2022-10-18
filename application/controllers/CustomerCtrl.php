@@ -72,7 +72,7 @@ class CustomerCtrl extends CI_Controller
 
         // customer set form validation
         $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('contact', 'Phone', 'required|is_unique[customers.contact]');
+        $this->form_validation->set_rules('contact', 'Phone', 'required');
         $this->form_validation->set_rules('address', 'Address');
 
 
@@ -82,7 +82,6 @@ class CustomerCtrl extends CI_Controller
             $this->load->view('app', $data);
         } else {
             $customer['name'] = $this->input->post('name');
-            $customer['contact'] = $this->input->post('contact');
             $customer['address'] = $this->input->post('address');
             $customer['created_at'] =    date('Y-m-d H:i:s');
             $customer['status'] =  1;
@@ -96,6 +95,12 @@ class CustomerCtrl extends CI_Controller
         }
     }
 
+    public function delete($id)
+    {
+        $where['id'] = $id;
+        $this->cm->common_delete('customers', $where);
+        redirect('customer/list');
+    }
     public function step()
     {
         $data['service'] = $this->cm->common_select('service');
