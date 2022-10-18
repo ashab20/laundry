@@ -83,7 +83,7 @@ class CustomerCtrl extends CI_Controller
         } else {
             $customer['name'] = $this->input->post('name');
             $customer['address'] = $this->input->post('address');
-            $customer['created_at'] =    date('Y-m-d H:i:s');
+            $customer['updated_at'] =    date('Y-m-d H:i:s');
             $customer['status'] =  1;
 
             if ($this->cm->common_update('customers', $customer, $where)) {

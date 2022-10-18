@@ -66,8 +66,6 @@ $route['quick/findcustomer']['get'] = 'QuickCtrl/find_customer';
 $route['dashboard'] = 'DashboardCtrl/index';
 
 
-
-
 // Customers Routes
 $route['customer/create']['get'] = 'CustomerCtrl/create';
 $route['customer/create']['post'] = 'CustomerCtrl/create';
@@ -76,6 +74,18 @@ $route['customer/update/(:num)']['get'] = 'CustomerCtrl/update/$1';
 $route['customer/update/(:num)']['post'] = 'CustomerCtrl/update/$1';
 $route['customer/delete/(:num)']['get'] = 'CustomerCtrl/delete/$1';
 
+// order Routes
+$route['order/laundry'] = 'OrderCtrl/laundry';
+$route['order/tailor'] = 'OrderCtrl/tailor';
+
+// Service Routes
+$route['service/laundry']['get'] = 'ServiceCtrl/laundry';
+$route['service/tailor']['get'] = 'ServiceCtrl/tailor';
+$route['service/create']['get'] = 'ServiceCtrl/create';
+$route['service/create']['post'] = 'ServiceCtrl/create';
+$route['service/update/(:num)']['get'] = 'ServiceCtrl/update/$1';
+$route['service/update/(:num)']['post'] = 'ServiceCtrl/update/$1';
+$route['service/delete/(:num)']['get'] = 'ServiceCtrl/delete/$1';
 
 
 $route['404_override'] = '';

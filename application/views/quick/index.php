@@ -78,7 +78,7 @@
                     <div class="row bg-light p-2 rounded-top">
                         <div class="col-2"></div>
                         <div class="col-3">
-                            <label for="">Test</label>
+                            <label for="">Laundry</label>
                         </div>
                         <div class="col-2"><label for="">Description</label></div>
                         <div class="col-1"><label for="">Quantity</label></div>
@@ -101,11 +101,12 @@
                                             <option value="">Select Item</option>
                                             <?php
                                             foreach ($service as $s) {
+                                                if($s->role === "LAUNDRY"){
                                             ?>
                                                 <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
                                                     <?= ucfirst($s->name) ?>
                                                 </option>
-                                            <?php }
+                                            <?php } }
                                             ?>
                                         </select>
                                     </div>
