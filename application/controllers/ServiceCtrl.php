@@ -43,6 +43,7 @@ class ServiceCtrl extends CI_Controller
 		$this->form_validation->set_rules('name', 'Full name', 'required');
 		$this->form_validation->set_rules('price', 'Rate', 'required');
 		$this->form_validation->set_rules('role', 'Role', 'required');
+		$this->form_validation->set_rules('size', 'Size', 'required');
 
 		if ($this->form_validation->run() === false) {
 			$data['page'] = "services/add";
@@ -51,6 +52,7 @@ class ServiceCtrl extends CI_Controller
 			$service['name'] = $this->input->post('name');
 			$service['price'] = $this->input->post('price');
 			$service['role'] = $role = $this->input->post('role');
+			$service['size'] = $role = $this->input->post('size');
 			$service['created_at'] =    date('Y-m-d H:i:s');
 			$service['status'] =  1;
 			$role = strtolower($role);
