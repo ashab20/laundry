@@ -82,7 +82,7 @@
                 <input type="text" hidden id="customerId" name="customer_id">
                 <div class="form-group d-none" id="service-content">
                     <div class="row bg-light p-2 rounded-top">
-                        <!-- <div class="col-2"></div> -->
+                        <div class="col-2"></div>
                         <div class="col-3">
                             <label for="" id="serveName">Laundry</label>
                         </div>
@@ -106,14 +106,14 @@
                                         <select class="form-control" name="service_id" id="service_id" onchange="product_add(this)">
                                             <option value="">Select Item</option>
                                             <!-- <?php
-                                            foreach ($service as $s) {
-                                                if ($s->role === "LAUNDRY") {
-                                            ?>
+                                                    foreach ($service as $s) {
+                                                        if ($s->role === "LAUNDRY") {
+                                                    ?>
                                                     <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
                                                         <?= ucfirst($s->name) ?>
                                                     </option>
                                             <?php }
-                                            } ?> -->
+                                                    } ?> -->
                                         </select>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
 
                     </div>
                 </div>
-                <div class=" d-none" id="textSize">
+                <div class="d-none" id="textSize">
                     <label for="">Size:</label>
                     <textarea class="form-control" name="size" id="" cols="20" rows="5" placeholder="M or 120*35*6"></textarea>
                 </div>
@@ -250,6 +250,7 @@
     // *** Change Service ***
     serve.change(() => {
         serviceContent.removeClass('d-none');
+        $('#textSize').removeClass('d-none');
         if (serve.val() === "laundry") {
             $.ajax({
                 url: "<?= base_url('service') ?>",
@@ -260,13 +261,13 @@
                 },
                 contentType: 'application/json',
                 success: function(res) {
-                    console.log(res);
-                    if (res > 0) {
-                       let content = res.map((r) => {
-                            return `<option>${r.name}</option>`
+                    if (res.length > 0) {
+                        let content = `<option value=''>Select</option>`
+                        content += res.map((r) => {
+                            return `<option value='${r.id}'  data-testid='${r.id}' data-price='${r.price}'>${r.name}</option>`
                         })
-                         
-                        $("#service_id").html() = content;
+
+                        $("#service_id").html(content)
                     }
                 },
                 error: function(xhr, status, errorMessage) {}
@@ -282,8 +283,13 @@
                 },
                 contentType: 'application/json',
                 success: function(res) {
-                    if (res) {
-                        console.log(res);
+                    if (res.length > 0) {
+                        let content = `<option value=''>Select</option>`
+                        content += res.map((r) => {
+                            return `<option value='${r.id}' data-testid='${r.id}' data-price='${r.price}'>${r.name}</option>`
+                        })
+
+                        $("#service_id").html(content)
                     }
                 },
                 error: function(xhr, status, errorMessage) {}
