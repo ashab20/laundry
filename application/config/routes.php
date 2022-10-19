@@ -79,6 +79,7 @@ $route['order/laundry'] = 'OrderCtrl/laundry';
 $route['order/tailor'] = 'OrderCtrl/tailor';
 
 // Service Routes
+$route['service']['get'] = 'ServiceCtrl/index';
 $route['service/laundry']['get'] = 'ServiceCtrl/laundry';
 $route['service/tailor']['get'] = 'ServiceCtrl/tailor';
 $route['service/create']['get'] = 'ServiceCtrl/create';

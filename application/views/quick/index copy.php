@@ -70,7 +70,8 @@
             <div class="step">
 
                 <div class="content">
-                    <!-- <h4></h4> -->
+                    <h4>Let's set up a home for all your work</h4>
+                    <p>You can always create another workspace later.</p>
                 </div>
                 <div class="row m-4 justify-content-end">
                     <select name="" id="serve" class="form-control col-3 float-end">
@@ -103,9 +104,9 @@
                                 </div>
                                 <div class="col-2 mr-2">
                                     <div class="p-0 form-group">
-                                        <select class="form-control" name="service_id" id="service_id" onchange="product_add(this)">
+                                        <select class="form-control laundry d-none" name="service_id" id="service_id" onchange="product_add(this)">
                                             <option value="">Select Item</option>
-                                            <!-- <?php
+                                            <?php
                                             foreach ($service as $s) {
                                                 if ($s->role === "LAUNDRY") {
                                             ?>
@@ -113,7 +114,7 @@
                                                         <?= ucfirst($s->name) ?>
                                                     </option>
                                             <?php }
-                                            } ?> -->
+                                            } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -246,48 +247,20 @@
         };
     }
 
-
-    // *** Change Service ***
     serve.change(() => {
-        serviceContent.removeClass('d-none');
-        if (serve.val() === "laundry") {
-            $.ajax({
-                url: "<?= base_url('service') ?>",
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    service: serve.val()
-                },
-                contentType: 'application/json',
-                success: function(res) {
-                    console.log(res);
-                    if (res > 0) {
-                       let content = res.map((r) => {
-                            return `<option>${r.name}</option>`
-                        })
-                         
-                        $("#service_id").html() = content;
-                    }
-                },
-                error: function(xhr, status, errorMessage) {}
-            });
-        } else if (serve.val() === "tailor") {
 
-            $.ajax({
-                url: "<?= base_url('service') ?>",
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    service: serve.val()
-                },
-                contentType: 'application/json',
-                success: function(res) {
-                    if (res) {
-                        console.log(res);
-                    }
-                },
-                error: function(xhr, status, errorMessage) {}
-            });
+        if (serve.val() === "laundry") {
+            serviceContent.removeClass('d-none');
+            $('#serveName').text(serve.val().toUpperCase());
+            $('.laundry').removeClass('d-none');
+            $('.tailor').addClass('d-none');
+            textSize.addClass("d-none");
+            console.log(serve.val());
+        } else if (serve.val() === "tailor") {
+            serviceContent.removeClass('d-none');
+            textSize.removeClass("d-none");
+            $('.tailor').removeClass('d-none');
+            $('.laundry').addClass('d-none');
         }
     })
 

@@ -12,7 +12,7 @@ class CommonModel extends CI_Model{
         $this->db->select($field);
         $this->db->from($table);
         if($where) $this->db->where($where);
-        if($orderBy) $this->db->order_by($orderBy,$sort);
+        if($orderBy) $this->db->order_by($$orderBy,$sort);
 
         $data = $this->db->get()->result();
         if($data){
