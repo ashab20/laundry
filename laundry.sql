@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2022 at 06:50 AM
+-- Generation Time: Oct 19, 2022 at 07:31 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -86,12 +86,13 @@ INSERT INTO `customer_order` (`id`, `customer_id`, `product_id`, `total_price`, 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `details` varchar(255) NOT NULL,
+  `details` text DEFAULT NULL,
+  `size` varchar(255) NOT NULL,
   `qty` decimal(10,0) UNSIGNED NOT NULL,
   `subtotal` decimal(7,2) UNSIGNED NOT NULL,
   `service_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,10 +100,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `customer_id`, `details`, `qty`, `subtotal`, `service_id`, `created_at`, `updated_at`, `status`) VALUES
-(27, 7, '', '4', '100.00', 2, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1),
-(28, 7, '', '1', '10.00', 1, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1),
-(29, 12, 'red t-shirt', '4', '40.00', 4, '2022-10-18 06:33:25', '0000-00-00 00:00:00', 1);
+INSERT INTO `products` (`id`, `customer_id`, `details`, `size`, `qty`, `subtotal`, `service_id`, `created_at`, `updated_at`, `status`) VALUES
+(27, 7, '', '', '4', '100.00', 2, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1),
+(28, 7, '', '', '1', '10.00', 1, '2022-10-13 09:49:00', '0000-00-00 00:00:00', 1),
+(29, 12, 'red t-shirt', '', '4', '40.00', 4, '2022-10-18 06:33:25', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
