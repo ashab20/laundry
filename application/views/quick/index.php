@@ -431,8 +431,6 @@
         e.preventDefault();
         let data = $('form.create_product').serialize();
 
-        console.log(data);
-
 
         // //    next time check data by phone
         // // if customers not exist then create new customer for loundry

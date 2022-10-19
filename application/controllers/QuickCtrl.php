@@ -61,8 +61,11 @@ class QuickCtrl extends CI_Controller
         $order['total_price'] = $this->input->get('total_price');
         $order['paid'] = $this->input->get('payment');
         $order['product_id'] =  json_encode($product_id);
-        $this->db->insert('customer_order', $order);
+        if($this->db->insert('customer_order', $order)){
+            $order =  $this->db->insert_id();
+        };
         $this->db->trans_complete();
+        return $order;
     }
 
 
