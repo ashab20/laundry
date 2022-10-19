@@ -86,7 +86,7 @@
                         <div class="col-3">
                             <label for="" id="serveName">Laundry</label>
                         </div>
-                        <div class="col-2"><label for="">Description</label></div>
+                        <div class="col-2"><label for="">Size</label></div>
                         <div class="col-1"><label for="">Quantity</label></div>
                         <div class="col-1"><label for="">Price</label></div>
                         <div class="col-2"><label for="">Total</label></div>
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2 p-0 mx-2">
-                                    <input type="text" class="form-control descirbe" name="details">
+                                    <input type="text" class="form-control descirbe" name="size" placeholder="S/M/L or feet">
                                 </div>
                                 <div class="col-1 p-0 mx-2">
                                     <input type="text" class="form-control qty" name="qty" onkeyup="get_count(this)">
@@ -143,8 +143,8 @@
                     </div>
                 </div>
                 <div class="d-none" id="textSize">
-                    <label for="">Size:</label>
-                    <textarea class="form-control" name="size" id="" cols="20" rows="5" placeholder="M or 120*35*6"></textarea>
+                    <label for="">Description:</label>
+                    <textarea class="form-control" name="details" id="" cols="20" rows="5" placeholder="Color, Extral Fasion etc"></textarea>
                 </div>
                 <div class="button button_gap">
                     <button type="button" class="back-click">Back</button>
@@ -251,6 +251,7 @@
     serve.change(() => {
         serviceContent.removeClass('d-none');
         $('#textSize').removeClass('d-none');
+        $('#serveName').text(serve.val());
         if (serve.val() === "laundry") {
             $.ajax({
                 url: "<?= base_url('service') ?>",
