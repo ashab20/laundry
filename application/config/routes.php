@@ -66,6 +66,10 @@ $route['quick/findcustomer']['get'] = 'QuickCtrl/find_customer';
 $route['dashboard'] = 'DashboardCtrl/index';
 
 
+// search 
+$route['search']["get"] = 'OrderCtrl/index';
+$route['search/item']["get"] = 'OrderCtrl/search';
+
 // Customers Routes
 $route['customer/create']['get'] = 'CustomerCtrl/create';
 $route['customer/create']['post'] = 'CustomerCtrl/create';
@@ -77,6 +81,7 @@ $route['customer/delete/(:num)']['get'] = 'CustomerCtrl/delete/$1';
 // order Routes
 $route['order/laundry'] = 'OrderCtrl/laundry';
 $route['order/tailor'] = 'OrderCtrl/tailor';
+$route['order/delete/(:num)']['get'] = 'OrderCtrl/delete/$1';
 
 // Service Routes
 $route['service']['get'] = 'ServiceCtrl/index';

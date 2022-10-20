@@ -6,7 +6,7 @@
 
         <div class="row align-items-center justify-content-between">
             <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
-                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Recent Purchases</h5>
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Tailor Oreder List</h5>
             </div>
             <div class="col-6 col-sm-auto ml-auto text-right pl-0">
                 <div class="d-none" id="purchases-actions">
@@ -86,7 +86,7 @@
                                         <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0" data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
                                             <div class="bg-white py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Edit</a><a class="dropdown-item" href="#!">Refund</a>
-                                                <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="#!">Delete</a>
+                                                <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="<?= base_url("order/delete/$d->id") ?>">Delete</a>
                                             </div>
                                         </div>
                                     </div>

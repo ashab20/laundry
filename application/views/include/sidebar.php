@@ -52,12 +52,12 @@
             <div class="navbar-vertical-divider">
               <hr class="navbar-vertical-hr my-2" />
             </div>
-            <li class="nav-item"><a class="nav-link" href="<?= base_url('dashboard') ?>">
+            <li class="nav-item"><a class="nav-link" href="<?= base_url('search') ?>">
                 <div class="d-flex align-items-center">
                   <span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text">Search</span>
                 </div>
               </a>
-            <li class="nav-item"><a class="nav-link dropdown-indicator" href="#email" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="email">
+            <!-- <li class="nav-item"><a class="nav-link dropdown-indicator" href="#email" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="email">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span><span class="nav-link-text">Laundry</span>
                 </div>
               </a>
@@ -90,22 +90,11 @@
                   <ul class="nav collapse" id="authentication-split" data-parent="#authentication">
                     <li class="nav-item"><a class="nav-link" href="authentication/split/login.html">Login</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/logout.html">Logout</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/register.html">Register</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/forgot-password.html">Forgot password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/reset-password.html">Reset password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/confirm-mail.html">Confirm mail</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="authentication/split/lock-screen.html">Lock screen</a>
-                    </li>
+                    
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
           <ul class="navbar-nav flex-column">
 
@@ -114,13 +103,13 @@
                 </div>
               </a>
               <ul class="nav collapse" id="pages" data-parent="#navbarVerticalCollapse">
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('order/laundry') ?>">Order List</a>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('order/laundry') ?>">Laundry List</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="pages/associations.html">Tailor List</a>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('order/tailor') ?>">Tailor List</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="pages/billing.html">Completed</a>
+                <!-- <li class="nav-item"><a class="nav-link" href="pages/billing.html">Completed</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="pages/customer-details.html">Pending</a>
+                <li class="nav-item"><a class="nav-link" href="pages/customer-details.html">Pending</a> -->
                 </li>
               </ul>
             </li>
@@ -134,10 +123,10 @@
                 </div>
               </a>
               <ul class="nav collapse" id="documentation" data-parent="#navbarVerticalCollapse">
-               
+
                 <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('service/create') ?>">Add Service</a>
-                </li> 
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('service/laundry') ?>">Laundry</a>
                 </li>
