@@ -61,7 +61,14 @@
                                 </td>
                                 <th class="align-middle"><a href="pages/customer-details.html"><?= $d->name ?></a></th>
                                 <td class="align-middle"><?= $d->contact ?></td>
-                                <td class="align-middle">Slick - Drag &amp; Drop Bootstrap Generator</td>
+                                <td class="align-middle">
+                                    <?php
+                                    $productId = json_decode($d->product_id);
+                                    foreach ($productId as $p) {
+                                        echo $p;
+                                    }
+                                    ?>
+                                </td>
                                 <td class="align-middle text-center fs-0">
                                     <?php if ($d->total_price == $d->paid) { ?>
                                         <span class="badge badge rounded-capsule badge-soft-success">

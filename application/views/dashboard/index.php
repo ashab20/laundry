@@ -79,7 +79,7 @@
             </th>
             <th class="sort pr-1 align-middle">Customer</th>
             <th class="sort pr-1 align-middle">Email</th>
-            <th class="sort pr-1 align-middle">Product</th>
+            <th class="sort pr-1 align-middle">Product id</th>
             <th class="sort pr-1 align-middle text-center">Payment status</th>
             <th class="sort pr-1 align-middle text-center">Due</th>
             <th class="sort pr-1 align-middle text-right">Total Amount</th>
@@ -99,7 +99,14 @@
                 </td>
                 <th class="align-middle"><a href="pages/customer-details.html"><?= $d->name ?></a></th>
                 <td class="align-middle"><?= $d->contact ?></td>
-                <td class="align-middle">Slick - Drag &amp; Drop Bootstrap Generator</td>
+                <td class="align-middle">
+                  <?php 
+                    $productId = json_decode($d->product_id);
+                    foreach($productId as $p){
+                      echo $p;
+                    }
+                   ?>
+                </td>
                 <td class="align-middle text-center fs-0">
                   <?php if ($d->total_price == $d->paid) { ?>
                     <span class="badge badge rounded-capsule badge-soft-success">

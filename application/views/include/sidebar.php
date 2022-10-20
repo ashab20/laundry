@@ -11,8 +11,8 @@
 
           <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-toggle="tooltip" data-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
 
-        </div><a class="navbar-brand" href="index.html">
-          <div class="d-flex align-items-center py-3"><img class="mr-2" src="<?= base_url('assets/img/illustrations/falcon.png') ?>" alt="" width="40" /><span class="text-sans-serif">falcon</span>
+        </div><a class="navbar-brand" href="<?= base_url('/') ?>">
+          <div class="d-flex align-items-center py-3"><img class="" src="<?= base_url('assets/img/icon.PNG') ?>" alt="" width="50" /><span class="text-sans-serif text-info">Tailor</span>
           </div>
         </a>
       </div>

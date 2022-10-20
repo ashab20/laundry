@@ -1,8 +1,8 @@
 <div class="content">
       <nav class="navbar navbar-light navbar-glass navbar-top sticky-kit navbar-expand">
         <button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-        <a class="navbar-brand mr-1 mr-sm-3" href="index.html">
-          <div class="d-flex align-items-center"><img class="mr-2" src="<?= base_url('assets/img/illustrations/falcon.png" alt="" width="40" /><span class="text-sans-serif">falcon</span>
+        <a class="navbar-brand mr-1 mr-sm-3" href="<?= base_url("/") ?>">
+          <div class="d-flex align-items-center"><img class="mr-2" src="<?= base_url('assets/img/logo.png') ?>" alt="" width="40" /><span class="text-sans-serif">falcon</span>
               </div>
             </a>
             <ul class="navbar-nav align-items-center d-none d-lg-block">

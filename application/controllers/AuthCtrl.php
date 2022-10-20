@@ -21,20 +21,14 @@ class AuthCtrl extends CI_Controller
 
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('login');
+			if (isset($_SESSION['ud'])) {
+				redirect('/dashboard/');
+			} else {
+				$this->load->view('login');
+			}
 		} else {
 			$usr['email'] = $this->input->post('email');
 			$usr['password'] = sha1(md5($this->input->post('password')));
-
-			// $this->db->where($usr);
-			// /* group all where condition */
-
-			// $this->db->group_start();
-			// $this->db->where('username',$usr)
-			// ->or_where('email_address',$usr)
-			// ->or_where('contact_no',$usr);
-			// $this->db->group_end();
-
 
 			$loggedIn = $this->db->where($usr)->get('users')->row();
 
@@ -75,7 +69,12 @@ class AuthCtrl extends CI_Controller
 		$this->form_validation->set_rules('role', 'Role', 'required');
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('register');
+
+			if (isset($_SESSION['ud'])) {
+				redirect('/dashboard/');
+			} else {
+				$this->load->view('register');
+			}
 		} else {
 			$usr['name'] = $this->input->post('name');
 			$usr['email'] = $this->input->post('email');

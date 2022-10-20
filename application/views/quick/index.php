@@ -105,15 +105,6 @@
                                     <div class="p-0 form-group">
                                         <select class="form-control" name="service_id" id="service_id" onchange="product_add(this)">
                                             <option value="">Select Item</option>
-                                            <!-- <?php
-                                                    foreach ($service as $s) {
-                                                        if ($s->role === "LAUNDRY") {
-                                                    ?>
-                                                    <option data-testid="<?= $s->id ?>" data-price="<?= $s->price ?>" value="<?= $s->id ?>">
-                                                        <?= ucfirst($s->name) ?>
-                                                    </option>
-                                            <?php }
-                                                    } ?> -->
                                         </select>
                                     </div>
                                 </div>
@@ -139,7 +130,6 @@
                                 <i class="mdi mdi-plus-circle"></i>
                             </button>
                         </div>
-
                     </div>
                 </div>
                 <div class="d-none" id="textSize">
@@ -161,35 +151,31 @@
                 </div>
                 <!-- final counter -->
                 <div class="form-group">
-
                     <div class="row">
-
                         <div class="col-12">
                             <div>
-                                <label for="sub_amount" class="form-label text-success">Sub Amount:</label>
+                                <label for="sub_amount" class="form-label text-muted">Sub Amount:</label>
                                 <input type="number" class="form-control" id="sub_amount" placeholder="Enter Sub Amount" name="subtotal">
                             </div>
                             <div>
-                                <label for="discount" class="form-label text-success">Discount:</label>
+                                <label for="discount" class="form-label text-muted">Discount:</label>
                                 <input type="number" class="form-control" id="discount" placeholder="Enter Discount" name="discount" onkeyup="total_amount_calc()" value="0">
                             </div>
-                            <div>
+                            <!-- <div>
                                 <label for="tax" class="form-label text-success">Tax (%):</label>
                                 <input type="number" class="form-control" id="tax" placeholder="Enter Tax" name="tax" onkeyup="total_amount_calc()" value="0">
-                            </div>
+                            </div> -->
                             <div>
-                                <label for="total_amount" class="form-label text-success">Total Amount:</label>
+                                <label for="total_amount" class="form-label text-muted">Total Amount:</label>
                                 <input type="number" value="0" class="form-control" id="total_amount" placeholder="Enter Total Amount" name="total_price">
                             </div>
                             <div>
-                                <label for="payment" class="form-label text-success">Pay Amount:</label>
+                                <label for="payment" class="form-label text-muted">Pay Amount:</label>
                                 <input type="number" value="0" class="form-control" id="payment" placeholder="Enter Pay Amount" name="payment">
                             </div>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="button button_gap1">
                     <button type="button" class="back-click">Back</button>
                     <button type="submit" class="create_porduct finish-click">Finish</button>
@@ -201,19 +187,21 @@
         // ! Step Final 
         ?>
         <div class="step">
-
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
                 <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
             </svg>
-            <div class="content">
-                <h2>Congratulations! <span id="shown_name"></span></h2>
-                <p>You have completed onboarding,you can start using the Eden!</p>
+            <div class="content" style="justify-content: center;display: flex;
+flex-direction: column;align-items: center;">
+                <h2>Order Completed!<span id="shown_name"></span></h2>
+                <p>Order Detais</p>
+                <div id="details">
+
+                </div>
             </div>
             <div class="button launch">
-                <button>Print</button>
+                <button type="button" id="printer">Print</button>
             </div>
-
         </div>
     </div>
 
@@ -234,7 +222,6 @@
     let serve = $('#serve');
     let serviceContent = $('#service-content');
     let textSize = $("#textSize");
-
     // search contact with debounce
     function debounce(func, timeout = 1000) {
         let timer;
@@ -245,7 +232,6 @@
             }, timeout);
         };
     }
-
 
     // *** Change Service ***
     serve.change(() => {
@@ -310,8 +296,6 @@
                 contentType: 'application/json',
                 success: function(res) {
                     if (res.length > 0) {
-                        // $(".add_customer").addClass('d-none');
-                        // $(".table").addClass('d-block');
                         name.val(res[0].name).attr({
                             readonly: true
                         });
@@ -325,7 +309,6 @@
                         $("#customerId").val(res[0].id)
                         $('.create-workspace').addClass('d-none');
                         $('.next').removeClass('d-none');
-                        // $('.create-workspace').addClass('edit-customers').text('Edit').removeClass('create-workspace');
                         create_customer = null;
                         editCustomers.removeClass('d-none');
 
@@ -338,7 +321,6 @@
                 }
             });
         }
-
     }
     const checkContact = debounce((e) => checking(e));
 
@@ -353,8 +335,6 @@
             created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
             status: 1
         }
-        // //    next time check data by phone
-        // // if customers not exist then create new customer for loundry
         $.ajax({
             url: "<?= base_url('quick/addcustomer') ?>",
             type: 'GET',
@@ -373,8 +353,6 @@
         });
     });
 
-
-
     editCustomers.click(() => {
 
         $('.next').addClass('d-none')
@@ -391,7 +369,6 @@
         })
     })
     // update customers
-
     $('.update').click((e) => {
         e.preventDefault();
         let customersId = $('#id');
@@ -403,8 +380,7 @@
             created_at: `${new Date().toISOString().slice(0, 19).replace('T', ' ')}`,
             status: 1
         }
-        // //    next time check data by phone
-        // // if customers not exist then create new customer for loundry
+
         $.ajax({
             url: `<?= base_url('quick/update') ?>`,
             type: 'GET',
@@ -431,9 +407,6 @@
         e.preventDefault();
         let data = $('form.create_product').serialize();
 
-
-        // //    next time check data by phone
-        // // if customers not exist then create new customer for loundry
         $.ajax({
             url: "<?= base_url('quick/addproduct') ?>",
             type: 'GET',
@@ -443,15 +416,64 @@
             success: function(res) {
                 if (res) {
                     console.log(res);
-                    formnumber++;
-                    updateform();
-                    progress_forward();
+                    let content = `
+                        <table style="min-width:300px;text-align:center;">
+                            <tr>
+                                <th>Order Id</th>
+                                <td>${res.order_id}</td>
+                            </tr>
+                            <tr>
+                                <th>Product</th>
+                                <td>${JSON.parse(res.product_id) }</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td>${res.name}</td>
+                            </tr>
+                            <tr>
+                                <th>Contact</th>
+                                <td>${res.contact}</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>${res.address}</td>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+                                <td>${res.total_price}</tr>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>${res.paid}</td>
+                            </tr>
+                            <tr>
+                                <th>Due</th>
+                                <td>${res.total_price - res.paid }</td>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <td>${res.created_at}</td>
+                            </tr>
+                        </table>
+                    `;
+                    $("#details").html(content)
                 }
             },
             error: function(xhr, status, errorMessage) {}
         });
 
+    });
 
+
+    $("#printer").click(() => {
+        let printContents = $("#details").html();
+        let originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
 
     });
 </script>

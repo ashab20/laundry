@@ -51,7 +51,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <div class="container" data-layout="container">
       <div class="row flex-center min-vh-100 py-6">
-        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4"><a class="d-flex flex-center mb-4" href="<?= base_url('index.html') ?>"><img class="mr-2" src="<?= base_url('assets/img/illustrations/falcon.png') ?>'" alt="" width="58" /><span class="text-sans-serif font-weight-extra-bold fs-5 d-inline-block">falcon</span></a>
+        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+          <a class="navbar-brand" href="<?= base_url('/') ?>">
+            <div class="d-flex align-items-center py-3"><img class="" src="<?= base_url('assets/img/icon.PNG') ?>" alt="" width="50" /><span class="text-sans-serif text-info">Tailor</span>
+            </div>
+          </a>
           <div class="card">
             <div class="card-body p-4 p-sm-5">
               <span>

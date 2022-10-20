@@ -7,13 +7,14 @@
     background-color:#e5e9f1;
 }
 
-.step_wrapper .card{
-    min-height:420px;  
+.step_wrapper .card{  
     background-color:#fff;
     border-radius:10px;
     padding:10px 20px;
     box-sizing:border-box;
     font-family: 'Poppins', sans-serif;
+    width: 80%;
+    height: 80vh;
 }
 
 .step{
@@ -26,7 +27,13 @@
     display:none !important;
 }
 
-
+#details{
+    justify-content: center;
+display: flex;
+flex-direction: column;
+text-align: justify;
+align-items: center;
+}
 
 .step_wrapper .card .parent{
     margin-top:20px;
